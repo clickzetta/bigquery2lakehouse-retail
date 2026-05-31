@@ -12,7 +12,11 @@ clean-targets:
 
 models:
   retail:
-    materialized: table
+    # dynamic_table without refresh_interval = no automatic schedule.
+    # Refresh is triggered manually via Studio Tasks (REFRESH DYNAMIC TABLE ...),
+    # mirroring the original project where Airflow DAG had schedule=None
+    # and Cosmos DbtTaskGroup triggered dbt run on demand.
+    materialized: dynamic_table
 
 seeds:
   retail:

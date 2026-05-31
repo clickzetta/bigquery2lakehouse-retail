@@ -2,26 +2,27 @@
 """
 Setup Studio Tasks for the retail dbt pipeline.
 
-Compiles the dbt project, reads the compiled SQL, and creates 7 SQL tasks
-in the 'retail_pipeline' folder. Task dependencies mirror the dbt model DAG:
+Creates 7 SQL tasks in the 'retail_pipeline' folder. Each task runs
+REFRESH DYNAMIC TABLE for one dbt model. Task dependencies mirror the dbt DAG:
 
   01_dim_customer  ─┐
   02_dim_datetime  ─┼─► 04_fct_invoices ─► 05_report_customer_invoices
   03_dim_product   ─┘                   ─► 06_report_product_invoices
                                          ─► 07_report_year_invoices
 
-Each task runs: DROP TABLE IF EXISTS + CREATE TABLE AS SELECT
-(ClickZetta does not support CREATE OR REPLACE TABLE ... AS SELECT)
-
-The SQL comes directly from dbt compile output — so Studio Tasks always
-stay in sync with the dbt models. If you change a model, re-run this script.
+Why REFRESH DYNAMIC TABLE instead of dbt run:
+  The original project used Airflow (schedule=None) + Cosmos to trigger dbt run
+  on demand. Here, Studio Tasks replace Airflow+Cosmos as the orchestration layer.
+  The dbt models are materialized as dynamic_table (no refresh_interval = no
+  automatic schedule), so Studio Tasks drive when each table refreshes — exactly
+  what Airflow+Cosmos did in the original project.
 
 Prerequisites:
   - Run 03_lakehouse/setup.py first (creates cz-cli profile + dbt profiles.yml)
-  - dbt-clickzetta must be installed in the current Python environment
+  - Run: dbt seed && dbt run --profiles-dir . (in 03_lakehouse/dbt/)
+    to create the dynamic tables before setting up Studio Tasks
 
 Usage:
-  cd 03_lakehouse
   python tasks/setup.py                      # reads CZ_PROFILE from .env
   python tasks/setup.py --profile retail_dev
 """
@@ -30,7 +31,6 @@ import json
 import sys
 import argparse
 import os
-import re
 import tempfile
 from pathlib import Path
 
@@ -40,10 +40,8 @@ try:
 except ImportError:
     pass
 
-DBT_DIR = Path(__file__).parent.parent / "dbt"
 FOLDER = "retail_pipeline"
 
-# dbt model name → Studio task name + upstream deps
 MODEL_DAG = [
     {"model": "dim_customer",             "task": "01_dim_customer",             "deps": []},
     {"model": "dim_datetime",             "task": "02_dim_datetime",             "deps": []},
@@ -55,8 +53,8 @@ MODEL_DAG = [
 ]
 
 
-def run_cmd(cmd, check=True, cwd=None):
-    r = subprocess.run(cmd, capture_output=True, text=True, cwd=cwd)
+def run_cmd(cmd, check=True):
+    r = subprocess.run(cmd, capture_output=True, text=True)
     if check and r.returncode != 0:
         print(f"  ERROR: {r.stdout.strip()[:200] or r.stderr.strip()[:200]}")
         sys.exit(1)
@@ -70,48 +68,6 @@ def get_workspace(profile):
         return d.get("data", {}).get("workspace") or os.getenv("CLICKZETTA_WORKSPACE", "")
     except Exception:
         return os.getenv("CLICKZETTA_WORKSPACE", "")
-
-
-def compile_dbt():
-    """Run dbt compile and return path to compiled SQL directory."""
-    print("  Running dbt compile...")
-    rc, out = run_cmd(
-        ["dbt", "compile", "--profiles-dir", "."],
-        cwd=str(DBT_DIR), check=False
-    )
-    if rc != 0:
-        print(f"  ERROR: dbt compile failed.\n  Make sure dbt-clickzetta is installed and profiles.yml exists.")
-        print(f"  Run: python setup.py  (in 03_lakehouse/) first")
-        sys.exit(1)
-    compiled_dir = DBT_DIR / "target" / "compiled" / "retail" / "models"
-    if not compiled_dir.exists():
-        print(f"  ERROR: compiled directory not found: {compiled_dir}")
-        sys.exit(1)
-    return compiled_dir
-
-
-def read_compiled_sql(compiled_dir, model_name, workspace):
-    """Find compiled SQL for a model and wrap it in DROP + CREATE TABLE."""
-    # search transform/ and report/ subdirs
-    for subdir in ["transform", "report"]:
-        sql_file = compiled_dir / subdir / f"{model_name}.sql"
-        if sql_file.exists():
-            select_sql = sql_file.read_text().strip()
-            # The compiled SQL references the local workspace (from profiles.yml).
-            # Replace it with the target workspace so the task works for any user.
-            local_ws = _detect_local_workspace(select_sql)
-            if local_ws and local_ws != workspace:
-                select_sql = select_sql.replace(local_ws + ".", workspace + ".")
-            table_ref = f"{workspace}.retail.{model_name}"
-            return f"DROP TABLE IF EXISTS {table_ref};\nCREATE TABLE {table_ref} AS\n{select_sql}"
-    print(f"  ERROR: compiled SQL not found for model '{model_name}'")
-    sys.exit(1)
-
-
-def _detect_local_workspace(sql):
-    """Extract the workspace name from a compiled SQL file (e.g. 'quick_start')."""
-    m = re.search(r'\b(\w+)\.retail(?:_raw)?\.', sql)
-    return m.group(1) if m else None
 
 
 def get_task_id(name, profile):
@@ -134,17 +90,10 @@ def setup(profile):
 
     print(f"\n=== Setup Studio Tasks (profile: {profile}, workspace: {workspace}) ===\n")
 
-    # Step 1: compile dbt to get up-to-date SQL
-    print("[1/5] Compiling dbt models...")
-    compiled_dir = compile_dbt()
-    print(f"  compiled SQL ready at {compiled_dir}")
-
-    # Step 2: create folder
-    print(f"\n[2/5] Creating folder '{FOLDER}'...")
+    print(f"[1/4] Creating folder '{FOLDER}'...")
     run_cmd(["cz-cli", "task", "create-folder", FOLDER, "--profile", profile], check=False)
 
-    # Step 3: create tasks (idempotent)
-    print(f"\n[3/5] Creating {len(MODEL_DAG)} SQL tasks...")
+    print(f"\n[2/4] Creating {len(MODEL_DAG)} SQL tasks...")
     task_ids = {}
     for entry in MODEL_DAG:
         name = entry["task"]
@@ -159,10 +108,10 @@ def setup(profile):
             task_ids[name] = tid
             print(f"  created: {name} (id={tid})")
 
-    # Step 4: set SQL content from dbt compiled output
-    print(f"\n[4/5] Setting SQL content from dbt compiled models...")
+    print(f"\n[3/4] Setting task content (REFRESH DYNAMIC TABLE)...")
     for entry in MODEL_DAG:
-        sql = read_compiled_sql(compiled_dir, entry["model"], workspace)
+        table_ref = f"{workspace}.retail.{entry['model']}"
+        sql = f"REFRESH DYNAMIC TABLE {table_ref};"
         with tempfile.NamedTemporaryFile(mode='w', suffix='.sql', delete=False) as f:
             f.write(sql)
             tmp = f.name
@@ -171,10 +120,9 @@ def setup(profile):
         run_cmd(["cz-cli", "task", "save-cron", entry["task"],
                  "--cron", "0 2 * * *", "--profile", profile])
         os.unlink(tmp)
-        print(f"  {entry['task']} ← {entry['model']}.sql: OK")
+        print(f"  {entry['task']}: {sql}")
 
-    # Step 5: set dependencies + deploy
-    print(f"\n[5/5] Setting dependencies and deploying...")
+    print(f"\n[4/4] Setting dependencies and deploying...")
     for entry in MODEL_DAG:
         if entry["deps"]:
             dep_list = [{"taskId": task_ids[d], "taskName": d}
@@ -195,9 +143,9 @@ Task DAG (folder: {FOLDER}):
   03_dim_product   ─┘                   ─► 06_report_product_invoices
                                          ─► 07_report_year_invoices
 
-SQL comes from dbt compiled output — re-run this script after changing dbt models.
+Each task runs: REFRESH DYNAMIC TABLE {workspace}.retail.<model>
 
-To execute manually:
+To trigger a full pipeline refresh:
   cz-cli task execute 01_dim_customer --profile {profile} --max-wait-seconds 60
   cz-cli task execute 02_dim_datetime --profile {profile} --max-wait-seconds 60
   cz-cli task execute 03_dim_product  --profile {profile} --max-wait-seconds 60
