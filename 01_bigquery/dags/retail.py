@@ -26,15 +26,16 @@ from airflow.models.baseoperator import chain
 )
 def retail():
     bucket_name = 'alanceloth_online_retail'
-
     @task.external_python(python='/usr/local/airflow/pandas_venv/bin/python')
     def correct_csv_format():
         import pandas as pd
+
         file_path = 'include/datasets/online_retail.csv'
         new_file_path = 'include/datasets/online_retail_dataset.csv'
         df = pd.read_csv(file_path, encoding='ISO-8859-1')
         df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'], format='%m/%d/%y %H:%M', errors='coerce')
         df.to_csv(new_file_path, index=False)
+    
 
     upload_retail_csv_to_gcs = LocalFilesystemToGCSOperator(
         task_id='upload_retail_csv_to_gcs',
@@ -73,7 +74,9 @@ def retail():
             metadata=Metadata(schema='retail')
         ),
         use_native_support=True,
-        native_support_kwargs={"encoding": "ISO_8859_1"},
+        native_support_kwargs={
+            "encoding": "ISO_8859_1",
+        }
     )
 
     country_gcs_to_raw = aql.load_file(
@@ -89,14 +92,18 @@ def retail():
             metadata=Metadata(schema='retail')
         ),
         use_native_support=True,
-        native_support_kwargs={"encoding": "ISO_8859_1"},
+        native_support_kwargs={
+            "encoding": "ISO_8859_1",
+        }
     )
 
     @task.external_python(python='/usr/local/airflow/soda_venv/bin/python')
     def check_load(scan_name='check_load', checks_subpath='sources'):
         from include.soda.check_function import check
-        return check(scan_name, checks_subpath)
 
+        return check(scan_name, checks_subpath)
+    
+    
     transform = DbtTaskGroup(
         group_id='transform',
         project_config=DBT_PROJECT_CONFIG,
@@ -110,7 +117,9 @@ def retail():
     @task.external_python(python='/usr/local/airflow/soda_venv/bin/python')
     def check_transform(scan_name='check_transform', checks_subpath='transform'):
         from include.soda.check_function import check
+
         return check(scan_name, checks_subpath)
+    
 
     report = DbtTaskGroup(
         group_id='report',
@@ -125,6 +134,7 @@ def retail():
     @task.external_python(python='/usr/local/airflow/soda_venv/bin/python')
     def check_report(scan_name='check_report', checks_subpath='report'):
         from include.soda.check_function import check
+
         return check(scan_name, checks_subpath)
 
     chain(

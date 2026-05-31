@@ -56,6 +56,4 @@ Key SQL changes: 2 files modified out of 7 models. See [02_migration/MIGRATION_N
 
 ## Documentation
 
-Full migration guide (Chinese): [dbt BigQuery 迁移实战](https://docs.yunqi.tech)
-
 Original project: [alanceloth/Retail_Data_Pipeline](https://github.com/alanceloth/Retail_Data_Pipeline)

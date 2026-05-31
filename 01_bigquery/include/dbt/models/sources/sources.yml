@@ -3,6 +3,7 @@ version: 2
 sources:
   - name: retail
     database: 'airflow-dbt-soda-pipeline'
+
     tables:
-      - name: raw_invoices
-      - name: raw_country
+        - name: raw_invoices
+        - name: raw_country

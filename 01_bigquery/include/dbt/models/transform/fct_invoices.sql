@@ -1,9 +1,10 @@
+-- Create the fact table by joining the relevant keys from dimension table
 WITH fct_invoices_cte AS (
     SELECT
         InvoiceNo AS invoice_id,
         CAST(InvoiceDate AS STRING) AS datetime_id,
-        {{ dbt_utils.generate_surrogate_key(['StockCode', 'Description', 'UnitPrice']) }} AS product_id,
-        {{ dbt_utils.generate_surrogate_key(['CustomerID', 'Country']) }} AS customer_id,
+        {{ dbt_utils.generate_surrogate_key(['StockCode', 'Description', 'UnitPrice']) }} as product_id,
+        {{ dbt_utils.generate_surrogate_key(['CustomerID', 'Country']) }} as customer_id,
         Quantity AS quantity,
         Quantity * UnitPrice AS total
     FROM {{ source('retail', 'raw_invoices') }}
