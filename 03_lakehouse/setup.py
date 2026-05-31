@@ -55,15 +55,12 @@ def main():
     profile   = os.getenv("CZ_PROFILE", "retail_dev")
     service   = os.getenv("CLICKZETTA_SERVICE", "cn-shanghai-alicloud.api.clickzetta.com")
 
-    print(f"
-=== bigquery2lakehouse-retail setup ===
-")
+    print(f"\n=== bigquery2lakehouse-retail setup ===\n")
     print(f"Instance:  {instance}")
     print(f"Workspace: {workspace}")
     print(f"VCluster:  {vcluster}")
     print(f"Schema:    {schema}")
-    print(f"Profile:   {profile}
-")
+    print(f"Profile:   {profile}\n")
 
     # Create cz-cli profile
     print("[1/3] Creating cz-cli profile...")
