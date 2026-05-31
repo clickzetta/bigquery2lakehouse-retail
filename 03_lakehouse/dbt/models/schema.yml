@@ -1,0 +1,71 @@
+version: 2
+
+models:
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_datetime
+    columns:
+      - name: datetime_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_product
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_invoices
+    columns:
+      - name: invoice_id
+        tests:
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_id
+      - name: product_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_id
+      - name: datetime_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_datetime')
+              field: datetime_id
+
+  - name: report_customer_invoices
+    columns:
+      - name: country
+        tests:
+          - not_null
+      - name: total_revenue
+        tests:
+          - not_null
+
+  - name: report_product_invoices
+    columns:
+      - name: stock_code
+        tests:
+          - not_null
+
+  - name: report_year_invoices
+    columns:
+      - name: year
+        tests:
+          - not_null
+      - name: month
+        tests:
+          - not_null

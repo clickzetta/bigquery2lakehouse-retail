@@ -6,7 +6,7 @@ WITH fct_invoices_cte AS (
         {{ dbt_utils.generate_surrogate_key(['CustomerID', 'Country']) }} AS customer_id,
         Quantity AS quantity,
         Quantity * UnitPrice AS total
-    FROM {{ source('retail', 'raw_invoices') }}
+    FROM {{ source('retail', 'online_retail') }}
     WHERE Quantity > 0
 )
 SELECT

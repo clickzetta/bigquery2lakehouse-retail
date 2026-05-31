@@ -2,7 +2,7 @@ WITH datetime_cte AS (
     SELECT DISTINCT
         CAST(InvoiceDate AS varchar) AS datetime_id,
         DATE_FORMAT(InvoiceDate, 'yyyy-MM-dd HH:mm:ss') AS date_part
-    FROM {{ source('retail', 'raw_invoices') }}
+    FROM {{ source('retail', 'online_retail') }}
     WHERE InvoiceDate IS NOT NULL
 )
 SELECT

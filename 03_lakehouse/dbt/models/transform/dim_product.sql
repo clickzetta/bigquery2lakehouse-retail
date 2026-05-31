@@ -3,7 +3,7 @@ SELECT DISTINCT
     StockCode AS stock_code,
     Description AS description,
     UnitPrice AS price
-FROM {{ source('retail', 'raw_invoices') }}
+FROM {{ source('retail', 'online_retail') }}
 WHERE StockCode IS NOT NULL
     AND Description IS NOT NULL
     AND UnitPrice > 0

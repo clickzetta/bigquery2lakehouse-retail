@@ -13,3 +13,26 @@ clean-targets:
 models:
   retail:
     materialized: table
+
+seeds:
+  retail:
+    +schema: raw
+    online_retail:
+      +column_types:
+        InvoiceNo: varchar
+        StockCode: varchar
+        Description: varchar
+        Quantity: int
+        InvoiceDate: timestamp
+        UnitPrice: double
+        CustomerID: varchar
+        Country: varchar
+    country:
+      +column_types:
+        id: int
+        iso: varchar
+        name: varchar
+        nicename: varchar
+        iso3: varchar
+        numcode: varchar
+        phonecode: int

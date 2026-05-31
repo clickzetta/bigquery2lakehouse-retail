@@ -1,0 +1,2765 @@
+[0m20:13:39.446117 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10899f1d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1089c71d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1089c4470>]}
+
+
+============================== 20:13:39.448645 | 1c6dde0f-8987-4434-928c-0f266ed046c3 ==============================
+[0m20:13:39.448645 [info ] [MainThread]: Running with dbt=1.10.8
+[0m20:13:39.448910 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'debug': 'False', 'log_path': '/Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/logs', 'profiles_dir': '.', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt deps --profiles-dir .', 'send_anonymous_usage_stats': 'True'}
+[0m20:13:39.516321 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '1c6dde0f-8987-4434-928c-0f266ed046c3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108d4d340>]}
+[0m20:13:39.529774 [debug] [MainThread]: Set downloads directory='/var/folders/h1/6qxzlpc16yg_xzj7mptycrh00000gp/T/.ctx-mode-FoDKQx/dbt-downloads-3xyq7qh7'
+[0m20:13:39.530107 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m20:13:40.402901 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m20:13:40.403544 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m20:13:41.029273 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m20:13:41.034988 [info ] [MainThread]: Updating lock file in file path: /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/package-lock.yml
+[0m20:13:41.036279 [debug] [MainThread]: Set downloads directory='/var/folders/h1/6qxzlpc16yg_xzj7mptycrh00000gp/T/.ctx-mode-FoDKQx/dbt-downloads-tx61h1hk'
+[0m20:13:41.037655 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m20:13:42.654311 [info ] [MainThread]: Installed from version 1.3.0
+[0m20:13:42.654588 [info ] [MainThread]: Updated version available: 1.3.3
+[0m20:13:42.654775 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '1c6dde0f-8987-4434-928c-0f266ed046c3', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095f7590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095f7950>]}
+[0m20:13:42.654978 [info ] [MainThread]: 
+[0m20:13:42.655147 [info ] [MainThread]: Updates available for packages: ['dbt-labs/dbt_utils']                 
+Update your versions in packages.yml, then run dbt deps
+[0m20:13:42.659545 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 3.2425153, "process_in_blocks": "0", "process_kernel_time": 0.168809, "process_mem_max_rss": "115539968", "process_out_blocks": "0", "process_user_time": 0.597507}
+[0m20:13:42.659823 [debug] [MainThread]: Command `dbt deps` succeeded at 20:13:42.659782 after 3.24 seconds
+[0m20:13:42.660003 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108d4d340>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108c47320>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106db0920>]}
+[0m20:13:42.660180 [debug] [MainThread]: Flushing usage events
+[0m20:13:44.160374 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:13:49.792344 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d7bef00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d334470>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d334440>]}
+
+
+============================== 20:13:49.794782 | 07920bda-183d-49c3-a5eb-ab8b7ba4a3d5 ==============================
+[0m20:13:49.794782 [info ] [MainThread]: Running with dbt=1.10.8
+[0m20:13:49.795046 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '.', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': '/Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/logs', 'version_check': 'True', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt debug --profiles-dir .', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m20:13:49.804786 [info ] [MainThread]: dbt version: 1.10.8
+[0m20:13:49.805017 [info ] [MainThread]: python version: 3.12.2
+[0m20:13:49.805159 [info ] [MainThread]: python path: /Users/liangmo/.pyenv/versions/3.12.2/bin/python3.12
+[0m20:13:49.805295 [info ] [MainThread]: os info: macOS-26.4.1-arm64-arm-64bit
+[0m20:13:50.313010 [info ] [MainThread]: Using profiles dir at .
+[0m20:13:50.313325 [info ] [MainThread]: Using profiles.yml file at ./profiles.yml
+[0m20:13:50.313467 [info ] [MainThread]: Using dbt_project.yml file at /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/dbt_project.yml
+[0m20:13:50.313759 [info ] [MainThread]: adapter type: clickzetta
+[0m20:13:50.313936 [info ] [MainThread]: adapter version: 1.7.10
+[0m20:13:50.349909 [info ] [MainThread]: Configuration:
+[0m20:13:50.350189 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m20:13:50.350330 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m20:13:50.350456 [info ] [MainThread]: Required dependencies:
+[0m20:13:50.350722 [debug] [MainThread]: Executing "git --help"
+[0m20:13:50.369172 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m20:13:50.369774 [debug] [MainThread]: STDERR: "b''"
+[0m20:13:50.370006 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m20:13:50.370165 [info ] [MainThread]: Connection:
+[0m20:13:50.370337 [info ] [MainThread]:   workspace: quick_start
+[0m20:13:50.370467 [info ] [MainThread]:   instance: f8866243
+[0m20:13:50.370586 [info ] [MainThread]:   vcluster: default
+[0m20:13:50.370703 [info ] [MainThread]:   username: qiliang
+[0m20:13:50.370813 [info ] [MainThread]:   schema: retail
+[0m20:13:50.370940 [info ] [MainThread]:   password: Ql123456!
+[0m20:13:50.371057 [info ] [MainThread]:   service: cn-shanghai-alicloud.api.clickzetta.com
+[0m20:13:50.371166 [info ] [MainThread]:   database: quick_start
+[0m20:13:50.371455 [info ] [MainThread]: Registered adapter: clickzetta=1.7.10
+[0m20:13:50.425527 [debug] [MainThread]: Acquiring new clickzetta connection 'debug'
+[0m20:13:50.425946 [debug] [MainThread]: Using clickzetta connection "debug"
+[0m20:13:50.426091 [debug] [MainThread]: On debug: select 1 as id
+[0m20:13:50.426218 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m20:13:50.788013 [debug] [MainThread]: ClickZetta adapter: code: 0
+[0m20:13:50.788313 [debug] [MainThread]: SQL status: SUCCESS 0 in 0.362 seconds
+[0m20:13:50.788461 [debug] [MainThread]: ClickZetta adapter: dbt_execute_sql: select 1 as id
+[0m20:13:50.788585 [debug] [MainThread]: ClickZetta adapter: code: 0
+[0m20:13:50.789074 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m20:13:50.789236 [info ] [MainThread]: [32mAll checks passed![0m
+[0m20:13:50.791356 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 1.026791, "process_in_blocks": "0", "process_kernel_time": 4.044709, "process_mem_max_rss": "193642496", "process_out_blocks": "0", "process_user_time": 1.5695}
+[0m20:13:50.791614 [debug] [MainThread]: Command `dbt debug` succeeded at 20:13:50.791575 after 1.03 seconds
+[0m20:13:50.791783 [debug] [MainThread]: Connection 'debug' was left open.
+[0m20:13:50.791912 [debug] [MainThread]: On debug: Close
+[0m20:13:50.792089 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d334440>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13a84aba0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d35f530>]}
+[0m20:13:50.792280 [debug] [MainThread]: Flushing usage events
+[0m20:13:52.541946 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:14:04.939103 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a182d80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b0145f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b014560>]}
+
+
+============================== 20:14:04.941683 | de445de0-5169-4a03-bba0-e9fdd76be9e5 ==============================
+[0m20:14:04.941683 [info ] [MainThread]: Running with dbt=1.10.8
+[0m20:14:04.941962 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/logs', 'version_check': 'True', 'profiles_dir': '.', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt seed --profiles-dir .', 'send_anonymous_usage_stats': 'True'}
+[0m20:14:05.520054 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'de445de0-5169-4a03-bba0-e9fdd76be9e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be97aa0>]}
+[0m20:14:05.543167 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'de445de0-5169-4a03-bba0-e9fdd76be9e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bea59a0>]}
+[0m20:14:05.543816 [info ] [MainThread]: Registered adapter: clickzetta=1.7.10
+[0m20:14:05.602439 [debug] [MainThread]: checksum: 265d66e81f90af29a7a28579c9b54d938c94f4a57c57be5f853267ae509b5fcb, vars: {}, profile: , target: , version: 1.10.8
+[0m20:14:05.602925 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m20:14:05.603180 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'de445de0-5169-4a03-bba0-e9fdd76be9e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1385cafc0>]}
+[0m20:14:05.607884 [error] [MainThread]: Encountered an error:
+Parsing Error
+  The schema file at seeds/schema.yml is invalid because the value of 'seeds' is not a list
+[0m20:14:05.610028 [debug] [MainThread]: Resource report: {"command_name": "seed", "command_success": false, "command_wall_clock_time": 0.6998756, "process_in_blocks": "0", "process_kernel_time": 4.223284, "process_mem_max_rss": "191610880", "process_out_blocks": "0", "process_user_time": 1.355942}
+[0m20:14:05.610468 [debug] [MainThread]: Command `dbt seed` failed at 20:14:05.610420 after 0.70 seconds
+[0m20:14:05.610680 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bb33d40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x137746b40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1383ac4a0>]}
+[0m20:14:05.610851 [debug] [MainThread]: Flushing usage events
+[0m20:14:14.146964 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:14:42.902945 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10907a0f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108bf0590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108bf0560>]}
+
+
+============================== 20:14:42.905695 | ff54fd2f-0508-4be0-a60c-d30f08e4866e ==============================
+[0m20:14:42.905695 [info ] [MainThread]: Running with dbt=1.10.8
+[0m20:14:42.905964 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/logs', 'debug': 'False', 'profiles_dir': '.', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'invocation_command': 'dbt seed --profiles-dir .', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True'}
+[0m20:14:43.447668 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ff54fd2f-0508-4be0-a60c-d30f08e4866e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11c6bcad0>]}
+[0m20:14:43.469679 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'ff54fd2f-0508-4be0-a60c-d30f08e4866e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108e97080>]}
+[0m20:14:43.470251 [info ] [MainThread]: Registered adapter: clickzetta=1.7.10
+[0m20:14:43.524262 [debug] [MainThread]: checksum: 265d66e81f90af29a7a28579c9b54d938c94f4a57c57be5f853267ae509b5fcb, vars: {}, profile: , target: , version: 1.10.8
+[0m20:14:43.524738 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m20:14:43.524919 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'ff54fd2f-0508-4be0-a60c-d30f08e4866e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1362af440>]}
+[0m20:14:44.116929 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'ff54fd2f-0508-4be0-a60c-d30f08e4866e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x136509ee0>]}
+[0m20:14:44.146013 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/manifest.json
+[0m20:14:44.147248 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/semantic_manifest.json
+[0m20:14:44.157344 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'ff54fd2f-0508-4be0-a60c-d30f08e4866e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x136928b00>]}
+[0m20:14:44.157611 [info ] [MainThread]: Found 7 models, 2 seeds, 2 sources, 609 macros
+[0m20:14:44.157769 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ff54fd2f-0508-4be0-a60c-d30f08e4866e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x136723ce0>]}
+[0m20:14:44.158379 [info ] [MainThread]: 
+[0m20:14:44.158538 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m20:14:44.158665 [info ] [MainThread]: 
+[0m20:14:44.158868 [debug] [MainThread]: Acquiring new clickzetta connection 'master'
+[0m20:14:44.160842 [debug] [ThreadPool]: Acquiring new clickzetta connection 'list_quick_start'
+[0m20:14:44.164839 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start"
+[0m20:14:44.165051 [debug] [ThreadPool]: On list_quick_start: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start"} */
+
+    show schemas in quick_start
+  
+[0m20:14:44.165186 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:14:44.520767 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:14:44.521075 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.356 seconds
+[0m20:14:44.521226 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:14:44.521357 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:14:44.529909 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_quick_start, now create_quick_start_retail_raw)
+[0m20:14:44.530386 [debug] [ThreadPool]: Creating schema "database: "quick_start"
+schema: "retail_raw"
+"
+[0m20:14:44.532199 [debug] [ThreadPool]: Using clickzetta connection "create_quick_start_retail_raw"
+[0m20:14:44.532367 [debug] [ThreadPool]: On create_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "create_quick_start_retail_raw"} */
+create schema if not exists quick_start.retail_raw
+  
+[0m20:14:44.652205 [debug] [ThreadPool]: ClickZetta adapter: code: 1
+[0m20:14:44.652469 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.120 seconds
+[0m20:14:44.652603 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: create schema if not exists quick_start.retail_raw
+  
+[0m20:14:44.652730 [debug] [ThreadPool]: ClickZetta adapter: code: 1
+[0m20:14:44.653657 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_quick_start_retail_raw, now list_quick_start_retail_raw)
+[0m20:14:44.654665 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:14:44.654808 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+
+    show schemas in quick_start
+  
+[0m20:14:44.799945 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:14:44.800229 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.145 seconds
+[0m20:14:44.800369 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:14:44.800494 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:14:44.803155 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:14:44.803331 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+show tables in quick_start.retail_raw
+  
+[0m20:14:44.861366 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:14:44.861630 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.058 seconds
+[0m20:14:44.861772 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show tables in quick_start.retail_raw
+  
+[0m20:14:44.861898 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:14:44.862407 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:14:44.862545 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+show streams in quick_start.retail_raw
+[0m20:14:44.918830 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:14:44.919110 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.056 seconds
+[0m20:14:44.919248 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show streams in quick_start.retail_raw
+[0m20:14:44.919370 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:14:44.919927 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_quick_start_retail_raw, now list_quick_start_retail)
+[0m20:14:44.921528 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail"
+[0m20:14:44.921716 [debug] [ThreadPool]: On list_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail"} */
+
+    show schemas in quick_start
+  
+[0m20:14:45.051113 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:14:45.051378 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.130 seconds
+[0m20:14:45.051513 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:14:45.051634 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:14:45.052380 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ff54fd2f-0508-4be0-a60c-d30f08e4866e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10994dee0>]}
+[0m20:14:45.057317 [debug] [Thread-1 (]: Began running node seed.retail.country
+[0m20:14:45.057604 [info ] [Thread-1 (]: 1 of 2 START seed file retail_raw.country ...................................... [RUN]
+[0m20:14:45.057830 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_quick_start_retail, now seed.retail.country)
+[0m20:14:45.057981 [debug] [Thread-1 (]: Began compiling node seed.retail.country
+[0m20:14:45.058120 [debug] [Thread-1 (]: Began executing node seed.retail.country
+[0m20:14:45.068087 [debug] [Thread-1 (]: Using clickzetta connection "seed.retail.country"
+[0m20:14:45.068308 [debug] [Thread-1 (]: On seed.retail.country: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "seed.retail.country"} */
+
+    create table quick_start.retail_raw.country (id int,iso varchar,name varchar,nicename varchar,iso3 varchar,numcode varchar,phonecode int)
+  
+[0m20:14:45.185312 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:14:45.185601 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.117 seconds
+[0m20:14:45.185750 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    create table quick_start.retail_raw.country (id int,iso varchar,name varchar,nicename varchar,iso3 varchar,numcode varchar,phonecode int)
+  
+[0m20:14:45.185886 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:14:45.832832 [debug] [Thread-1 (]: Using clickzetta connection "seed.retail.country"
+[0m20:14:45.833131 [debug] [Thread-1 (]: On seed.retail.country: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "seed.retail.country"} */
+COPY INTO quick_start.retail_raw.country FROM USER VOLUME USING CSV OPTIONS('header'='true', 'nullValue'='') FILES('dbt_seed_6dedf97ada09.csv') PURGE=TRUE
+[0m20:14:46.794166 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:14:46.794471 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.961 seconds
+[0m20:14:46.794633 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: COPY INTO quick_start.retail_raw.country FROM USER VOLUME USING CSV OPTIONS('header'='true', 'nullValue'='') FILES('dbt_seed_6dedf97ada09.csv') PURGE=TRUE
+[0m20:14:46.794784 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:14:46.797460 [debug] [Thread-1 (]: Writing runtime SQL for node "seed.retail.country"
+[0m20:14:46.811178 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ff54fd2f-0508-4be0-a60c-d30f08e4866e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106eb54f0>]}
+[0m20:14:46.811455 [info ] [Thread-1 (]: 1 of 2 OK loaded seed file retail_raw.country .................................. [[32mINSERT 239[0m in 1.75s]
+[0m20:14:46.811693 [debug] [Thread-1 (]: Finished running node seed.retail.country
+[0m20:14:46.811865 [debug] [Thread-1 (]: Began running node seed.retail.online_retail
+[0m20:14:46.812115 [info ] [Thread-1 (]: 2 of 2 START seed file retail_raw.online_retail ................................ [RUN]
+[0m20:14:46.812348 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly seed.retail.country, now seed.retail.online_retail)
+[0m20:14:46.812512 [debug] [Thread-1 (]: Began compiling node seed.retail.online_retail
+[0m20:14:46.812658 [debug] [Thread-1 (]: Began executing node seed.retail.online_retail
+[0m20:14:46.870926 [debug] [Thread-1 (]: Using clickzetta connection "seed.retail.online_retail"
+[0m20:14:46.871215 [debug] [Thread-1 (]: On seed.retail.online_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "seed.retail.online_retail"} */
+
+    create table quick_start.retail_raw.online_retail (InvoiceNo varchar,StockCode varchar,Description varchar,Quantity int,InvoiceDate timestamp,UnitPrice double,CustomerID varchar,Country varchar)
+  
+[0m20:14:47.027357 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:14:47.027649 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.156 seconds
+[0m20:14:47.027825 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    create table quick_start.retail_raw.online_retail (InvoiceNo varchar,StockCode varchar,Description varchar,Quantity int,InvoiceDate timestamp,UnitPrice double,CustomerID varchar,Country varchar)
+  
+[0m20:14:47.027987 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:14:49.805766 [debug] [Thread-1 (]: Using clickzetta connection "seed.retail.online_retail"
+[0m20:14:49.806054 [debug] [Thread-1 (]: On seed.retail.online_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "seed.retail.online_retail"} */
+COPY INTO quick_start.retail_raw.online_retail FROM USER VOLUME USING CSV OPTIONS('header'='true', 'nullValue'='') FILES('dbt_seed_d8261a6891c5.csv') PURGE=TRUE
+[0m20:14:50.796199 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:14:50.796511 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.990 seconds
+[0m20:14:50.796685 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: COPY INTO quick_start.retail_raw.online_retail FROM USER VOLUME USING CSV OPTIONS('header'='true', 'nullValue'='') FILES('dbt_seed_d8261a6891c5.csv') PURGE=TRUE
+[0m20:14:50.796833 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:14:50.797641 [debug] [Thread-1 (]: Writing runtime SQL for node "seed.retail.online_retail"
+[0m20:14:50.798801 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ff54fd2f-0508-4be0-a60c-d30f08e4866e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107e1f560>]}
+[0m20:14:50.799027 [info ] [Thread-1 (]: 2 of 2 OK loaded seed file retail_raw.online_retail ............................ [[32mINSERT 14595[0m in 3.99s]
+[0m20:14:50.799241 [debug] [Thread-1 (]: Finished running node seed.retail.online_retail
+[0m20:14:50.799776 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m20:14:50.799958 [debug] [MainThread]: Connection 'seed.retail.online_retail' was left open.
+[0m20:14:50.800100 [debug] [MainThread]: On seed.retail.online_retail: Close
+[0m20:14:50.800250 [info ] [MainThread]: 
+[0m20:14:50.800391 [info ] [MainThread]: Finished running 2 seeds in 0 hours 0 minutes and 6.64 seconds (6.64s).
+[0m20:14:50.800688 [debug] [MainThread]: Command end result
+[0m20:14:50.810911 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/manifest.json
+[0m20:14:50.811821 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/semantic_manifest.json
+[0m20:14:50.813963 [debug] [MainThread]: Wrote artifact RunExecutionResult to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/run_results.json
+[0m20:14:50.814114 [info ] [MainThread]: 
+[0m20:14:50.814277 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m20:14:50.814406 [info ] [MainThread]: 
+[0m20:14:50.814548 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
+[0m20:14:50.816688 [debug] [MainThread]: Resource report: {"command_name": "seed", "command_success": true, "command_wall_clock_time": 7.9416804, "process_in_blocks": "0", "process_kernel_time": 4.238484, "process_mem_max_rss": "226951168", "process_out_blocks": "0", "process_user_time": 2.136431}
+[0m20:14:50.816898 [debug] [MainThread]: Command `dbt seed` succeeded at 20:14:50.816867 after 7.94 seconds
+[0m20:14:50.817051 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1096b8a10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x136873c80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1368710d0>]}
+[0m20:14:50.817204 [debug] [MainThread]: Flushing usage events
+[0m20:14:52.549548 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:15:08.770135 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ca27440>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d1cffb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d1cfef0>]}
+
+
+============================== 20:15:08.773308 | 6cd49fc5-111c-45f7-85c9-ec7cd79ab022 ==============================
+[0m20:15:08.773308 [info ] [MainThread]: Running with dbt=1.10.8
+[0m20:15:08.773589 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'log_path': '/Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/logs', 'fail_fast': 'False', 'profiles_dir': '.', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt run --profiles-dir .', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True'}
+[0m20:15:09.533101 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '6cd49fc5-111c-45f7-85c9-ec7cd79ab022', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x139c038c0>]}
+[0m20:15:09.555042 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '6cd49fc5-111c-45f7-85c9-ec7cd79ab022', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c7aeae0>]}
+[0m20:15:09.555817 [info ] [MainThread]: Registered adapter: clickzetta=1.7.10
+[0m20:15:09.614217 [debug] [MainThread]: checksum: 265d66e81f90af29a7a28579c9b54d938c94f4a57c57be5f853267ae509b5fcb, vars: {}, profile: , target: , version: 1.10.8
+[0m20:15:09.687321 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m20:15:09.687578 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m20:15:09.703671 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '6cd49fc5-111c-45f7-85c9-ec7cd79ab022', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x139c36c60>]}
+[0m20:15:09.733486 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/manifest.json
+[0m20:15:09.735002 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/semantic_manifest.json
+[0m20:15:09.747463 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '6cd49fc5-111c-45f7-85c9-ec7cd79ab022', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13a06bad0>]}
+[0m20:15:09.747741 [info ] [MainThread]: Found 7 models, 2 seeds, 2 sources, 609 macros
+[0m20:15:09.747896 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '6cd49fc5-111c-45f7-85c9-ec7cd79ab022', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x139b47680>]}
+[0m20:15:09.748624 [info ] [MainThread]: 
+[0m20:15:09.748794 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m20:15:09.748918 [info ] [MainThread]: 
+[0m20:15:09.749130 [debug] [MainThread]: Acquiring new clickzetta connection 'master'
+[0m20:15:09.751332 [debug] [ThreadPool]: Acquiring new clickzetta connection 'list_quick_start'
+[0m20:15:09.756220 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start"
+[0m20:15:09.756406 [debug] [ThreadPool]: On list_quick_start: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start"} */
+
+    show schemas in quick_start
+  
+[0m20:15:09.756533 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:15:10.166661 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.166950 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.410 seconds
+[0m20:15:10.167096 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:15:10.167220 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.177520 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_quick_start, now create_quick_start_retail)
+[0m20:15:10.177778 [debug] [ThreadPool]: Creating schema "database: "quick_start"
+schema: "retail"
+"
+[0m20:15:10.179763 [debug] [ThreadPool]: Using clickzetta connection "create_quick_start_retail"
+[0m20:15:10.179916 [debug] [ThreadPool]: On create_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "create_quick_start_retail"} */
+create schema if not exists quick_start.retail
+  
+[0m20:15:10.243693 [debug] [ThreadPool]: ClickZetta adapter: code: 1
+[0m20:15:10.243996 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.064 seconds
+[0m20:15:10.244148 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: create schema if not exists quick_start.retail
+  
+[0m20:15:10.244370 [debug] [ThreadPool]: ClickZetta adapter: code: 1
+[0m20:15:10.245427 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_quick_start_retail, now list_quick_start_retail)
+[0m20:15:10.246489 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail"
+[0m20:15:10.246642 [debug] [ThreadPool]: On list_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail"} */
+
+    show schemas in quick_start
+  
+[0m20:15:10.360633 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.360911 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.114 seconds
+[0m20:15:10.361053 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:15:10.361175 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.363838 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail"
+[0m20:15:10.364019 [debug] [ThreadPool]: On list_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail"} */
+show tables in quick_start.retail
+  
+[0m20:15:10.429900 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.430137 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.066 seconds
+[0m20:15:10.430271 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show tables in quick_start.retail
+  
+[0m20:15:10.430392 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.430903 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail"
+[0m20:15:10.431042 [debug] [ThreadPool]: On list_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail"} */
+show streams in quick_start.retail
+[0m20:15:10.493300 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.493566 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.062 seconds
+[0m20:15:10.493707 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show streams in quick_start.retail
+[0m20:15:10.493840 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.494404 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_quick_start_retail, now list_quick_start_retail_raw)
+[0m20:15:10.495406 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:15:10.495597 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+
+    show schemas in quick_start
+  
+[0m20:15:10.601667 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.601941 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.106 seconds
+[0m20:15:10.602083 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:15:10.602206 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.603591 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:15:10.603746 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+show tables in quick_start.retail_raw
+  
+[0m20:15:10.712834 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.713095 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.109 seconds
+[0m20:15:10.713232 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show tables in quick_start.retail_raw
+  
+[0m20:15:10.713353 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.714626 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:15:10.714817 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+show streams in quick_start.retail_raw
+[0m20:15:10.775396 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.775636 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.061 seconds
+[0m20:15:10.775761 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show streams in quick_start.retail_raw
+[0m20:15:10.775884 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:15:10.776612 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '6cd49fc5-111c-45f7-85c9-ec7cd79ab022', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x139cd65a0>]}
+[0m20:15:10.778042 [debug] [Thread-1 (]: Began running node model.retail.dim_customer
+[0m20:15:10.778276 [info ] [Thread-1 (]: 1 of 7 START sql table model retail.dim_customer ............................... [RUN]
+[0m20:15:10.778472 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_quick_start_retail_raw, now model.retail.dim_customer)
+[0m20:15:10.778617 [debug] [Thread-1 (]: Began compiling node model.retail.dim_customer
+[0m20:15:10.785859 [debug] [Thread-1 (]: Writing injected SQL for node "model.retail.dim_customer"
+[0m20:15:10.786662 [debug] [Thread-1 (]: Began executing node model.retail.dim_customer
+[0m20:15:10.799484 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_customer"
+[0m20:15:10.799717 [debug] [Thread-1 (]: On model.retail.dim_customer: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_customer"} */
+
+    SHOW TABLES IN quick_start.retail LIKE 'dim_customer'
+  
+[0m20:15:10.931624 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:10.931895 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.132 seconds
+[0m20:15:10.932052 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW TABLES IN quick_start.retail LIKE 'dim_customer'
+  
+[0m20:15:10.932192 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:10.932811 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_customer"
+[0m20:15:10.932971 [debug] [Thread-1 (]: On model.retail.dim_customer: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_customer"} */
+
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:15:10.997907 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:10.998175 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.065 seconds
+[0m20:15:10.998330 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:15:10.998466 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:11.011500 [debug] [Thread-1 (]: Writing runtime sql for node "model.retail.dim_customer"
+[0m20:15:11.012236 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_customer"
+[0m20:15:11.012449 [debug] [Thread-1 (]: On model.retail.dim_customer: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_customer"} */
+
+  
+    
+      create table quick_start.retail.dim_customer
+      
+      
+      
+      
+      
+      
+      as
+      WITH customer_cte AS (
+    SELECT DISTINCT
+        md5(cast(concat(coalesce(cast(CustomerID as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Country as string), '_dbt_utils_surrogate_key_null_')) as string)) AS customer_id,
+        Country AS country
+    FROM quick_start.retail_raw.raw_invoices
+    WHERE CustomerID IS NOT NULL
+)
+SELECT
+    t.*,
+    cm.iso
+FROM customer_cte t
+LEFT JOIN quick_start.retail_raw.raw_country cm ON t.country = cm.nicename
+  
+[0m20:15:11.182724 [warn ] [Thread-1 (]: ClickZetta adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_customer"} */
+
+  
+    
+      create table quick_start.retail.dim_customer
+      
+      
+      
+      
+      
+      
+      as
+      WITH customer_cte AS (
+    SELECT DISTINCT
+        md5(cast(concat(coalesce(cast(CustomerID as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Country as string), '_dbt_utils_surrogate_key_null_')) as string)) AS customer_id,
+        Country AS country
+    FROM quick_start.retail_raw.raw_invoices
+    WHERE CustomerID IS NOT NULL
+)
+SELECT
+    t.*,
+    cm.iso
+FROM customer_cte t
+LEFT JOIN quick_start.retail_raw.raw_country cm ON t.country = cm.nicename
+  
+[0m20:15:11.183065 [warn ] [Thread-1 (]: [AdapterEventWarning]: Unable to parse logging event dictionary. Failed to parse args field: Value Execute sql job failed, job_id: 2026053120151101259059586, error_code: CZLH-42000, error: CZLH-42000:[17,10] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices
+CZLH-42000:[24,11] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_country has unexpected type <class 'Exception'> at AdapterEventWarning.args[0].. Dictionary: {'name': 'ClickZetta', 'base_msg': 'Exception {}', 'args': [Exception('Execute sql job failed, job_id: 2026053120151101259059586, error_code: CZLH-42000, error: CZLH-42000:[17,10] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices\nCZLH-42000:[24,11] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_country')], 'node_info': {'node_path': 'transform/dim_customer.sql', 'node_name': 'dim_customer', 'unique_id': 'model.retail.dim_customer', 'resource_type': 'model', 'materialized': 'table', 'node_status': 'executing', 'node_started_at': '2026-05-31T12:15:10.777990', 'node_finished_at': None, 'meta': {}, 'node_relation': {'database': 'quick_start', 'schema': 'retail', 'alias': 'dim_customer', 'relation_name': 'quick_start.retail.dim_customer'}, 'node_checksum': 'ddb41b465fc6cc6721ace9fe2b30b7314794bec9087b9f22c1c6de894b913979'}}
+[0m20:15:11.183237 [warn ] [Thread-1 (]:  adapter: 
+[0m20:15:11.183397 [debug] [Thread-1 (]: ClickZetta adapter: Rolling back transaction.
+[0m20:15:11.189494 [debug] [Thread-1 (]: Runtime Error in model dim_customer (models/transform/dim_customer.sql)
+  Execute sql job failed, job_id: 2026053120151101259059586, error_code: CZLH-42000, error: CZLH-42000:[17,10] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices
+  CZLH-42000:[24,11] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_country
+[0m20:15:11.190566 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '6cd49fc5-111c-45f7-85c9-ec7cd79ab022', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13a1c5790>]}
+[0m20:15:11.190895 [error] [Thread-1 (]: 1 of 7 ERROR creating sql table model retail.dim_customer ...................... [[31mERROR[0m in 0.41s]
+[0m20:15:11.191151 [debug] [Thread-1 (]: Finished running node model.retail.dim_customer
+[0m20:15:11.191320 [debug] [Thread-1 (]: Began running node model.retail.dim_datetime
+[0m20:15:11.191526 [debug] [Thread-4 (]: Marking all children of 'model.retail.dim_customer' to be skipped because of status 'error'.  Reason: Runtime Error in model dim_customer (models/transform/dim_customer.sql)
+  Execute sql job failed, job_id: 2026053120151101259059586, error_code: CZLH-42000, error: CZLH-42000:[17,10] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices
+  CZLH-42000:[24,11] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_country.
+[0m20:15:11.191724 [info ] [Thread-1 (]: 2 of 7 START sql table model retail.dim_datetime ............................... [RUN]
+[0m20:15:11.192001 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.retail.dim_customer, now model.retail.dim_datetime)
+[0m20:15:11.192153 [debug] [Thread-1 (]: Began compiling node model.retail.dim_datetime
+[0m20:15:11.193374 [debug] [Thread-1 (]: Writing injected SQL for node "model.retail.dim_datetime"
+[0m20:15:11.193752 [debug] [Thread-1 (]: Began executing node model.retail.dim_datetime
+[0m20:15:11.195365 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_datetime"
+[0m20:15:11.195534 [debug] [Thread-1 (]: On model.retail.dim_datetime: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_datetime"} */
+
+    SHOW TABLES IN quick_start.retail LIKE 'dim_datetime'
+  
+[0m20:15:11.256507 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:11.256814 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.061 seconds
+[0m20:15:11.256982 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW TABLES IN quick_start.retail LIKE 'dim_datetime'
+  
+[0m20:15:11.257127 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:11.257735 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_datetime"
+[0m20:15:11.257902 [debug] [Thread-1 (]: On model.retail.dim_datetime: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_datetime"} */
+
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:15:11.318701 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:11.318995 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.061 seconds
+[0m20:15:11.319161 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:15:11.319310 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:11.320537 [debug] [Thread-1 (]: Writing runtime sql for node "model.retail.dim_datetime"
+[0m20:15:11.321025 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_datetime"
+[0m20:15:11.321190 [debug] [Thread-1 (]: On model.retail.dim_datetime: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_datetime"} */
+
+  
+    
+      create table quick_start.retail.dim_datetime
+      
+      
+      
+      
+      
+      
+      as
+      WITH datetime_cte AS (
+    SELECT DISTINCT
+        CAST(InvoiceDate AS varchar) AS datetime_id,
+        DATE_FORMAT(InvoiceDate, 'yyyy-MM-dd HH:mm:ss') AS date_part
+    FROM quick_start.retail_raw.raw_invoices
+    WHERE InvoiceDate IS NOT NULL
+)
+SELECT
+    datetime_id,
+    CAST(date_part AS timestamp) AS datetime,
+    SUBSTR(date_part, 9, 2) AS day,
+    SUBSTR(date_part, 6, 2) AS month,
+    SUBSTR(date_part, 1, 4) AS year,
+    SUBSTR(date_part, 12, 2) AS hour,
+    SUBSTR(date_part, 15, 2) AS minute,
+    DAYOFWEEK(CAST(date_part AS timestamp)) AS weekday
+FROM datetime_cte
+  
+[0m20:15:11.518122 [warn ] [Thread-1 (]: ClickZetta adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_datetime"} */
+
+  
+    
+      create table quick_start.retail.dim_datetime
+      
+      
+      
+      
+      
+      
+      as
+      WITH datetime_cte AS (
+    SELECT DISTINCT
+        CAST(InvoiceDate AS varchar) AS datetime_id,
+        DATE_FORMAT(InvoiceDate, 'yyyy-MM-dd HH:mm:ss') AS date_part
+    FROM quick_start.retail_raw.raw_invoices
+    WHERE InvoiceDate IS NOT NULL
+)
+SELECT
+    datetime_id,
+    CAST(date_part AS timestamp) AS datetime,
+    SUBSTR(date_part, 9, 2) AS day,
+    SUBSTR(date_part, 6, 2) AS month,
+    SUBSTR(date_part, 1, 4) AS year,
+    SUBSTR(date_part, 12, 2) AS hour,
+    SUBSTR(date_part, 15, 2) AS minute,
+    DAYOFWEEK(CAST(date_part AS timestamp)) AS weekday
+FROM datetime_cte
+  
+[0m20:15:11.518462 [warn ] [Thread-1 (]: [AdapterEventWarning]: Unable to parse logging event dictionary. Failed to parse args field: Value Execute sql job failed, job_id: 2026053120151132131949809, error_code: CZLH-42000, error: CZLH-42000:[17,10] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices has unexpected type <class 'Exception'> at AdapterEventWarning.args[0].. Dictionary: {'name': 'ClickZetta', 'base_msg': 'Exception {}', 'args': [Exception('Execute sql job failed, job_id: 2026053120151132131949809, error_code: CZLH-42000, error: CZLH-42000:[17,10] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices')], 'node_info': {'node_path': 'transform/dim_datetime.sql', 'node_name': 'dim_datetime', 'unique_id': 'model.retail.dim_datetime', 'resource_type': 'model', 'materialized': 'table', 'node_status': 'executing', 'node_started_at': '2026-05-31T12:15:11.191283', 'node_finished_at': None, 'meta': {}, 'node_relation': {'database': 'quick_start', 'schema': 'retail', 'alias': 'dim_datetime', 'relation_name': 'quick_start.retail.dim_datetime'}, 'node_checksum': '5225b29ca22ee3144ea7c8cb1bd28814395b437455dcc6e5417720f296b09490'}}
+[0m20:15:11.518626 [warn ] [Thread-1 (]:  adapter: 
+[0m20:15:11.518778 [debug] [Thread-1 (]: ClickZetta adapter: Rolling back transaction.
+[0m20:15:11.520141 [debug] [Thread-1 (]: Runtime Error in model dim_datetime (models/transform/dim_datetime.sql)
+  Execute sql job failed, job_id: 2026053120151132131949809, error_code: CZLH-42000, error: CZLH-42000:[17,10] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices
+[0m20:15:11.520378 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '6cd49fc5-111c-45f7-85c9-ec7cd79ab022', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13a182360>]}
+[0m20:15:11.520651 [error] [Thread-1 (]: 2 of 7 ERROR creating sql table model retail.dim_datetime ...................... [[31mERROR[0m in 0.33s]
+[0m20:15:11.520870 [debug] [Thread-1 (]: Finished running node model.retail.dim_datetime
+[0m20:15:11.521036 [debug] [Thread-1 (]: Began running node model.retail.dim_product
+[0m20:15:11.521260 [debug] [Thread-4 (]: Marking all children of 'model.retail.dim_datetime' to be skipped because of status 'error'.  Reason: Runtime Error in model dim_datetime (models/transform/dim_datetime.sql)
+  Execute sql job failed, job_id: 2026053120151132131949809, error_code: CZLH-42000, error: CZLH-42000:[17,10] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices.
+[0m20:15:11.521471 [info ] [Thread-1 (]: 3 of 7 START sql table model retail.dim_product ................................ [RUN]
+[0m20:15:11.521732 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.retail.dim_datetime, now model.retail.dim_product)
+[0m20:15:11.521882 [debug] [Thread-1 (]: Began compiling node model.retail.dim_product
+[0m20:15:11.523810 [debug] [Thread-1 (]: Writing injected SQL for node "model.retail.dim_product"
+[0m20:15:11.524239 [debug] [Thread-1 (]: Began executing node model.retail.dim_product
+[0m20:15:11.526422 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_product"
+[0m20:15:11.526595 [debug] [Thread-1 (]: On model.retail.dim_product: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_product"} */
+
+    SHOW TABLES IN quick_start.retail LIKE 'dim_product'
+  
+[0m20:15:11.585728 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:11.586037 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.059 seconds
+[0m20:15:11.586195 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW TABLES IN quick_start.retail LIKE 'dim_product'
+  
+[0m20:15:11.586331 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:11.586966 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_product"
+[0m20:15:11.587147 [debug] [Thread-1 (]: On model.retail.dim_product: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_product"} */
+
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:15:11.645700 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:11.645979 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.059 seconds
+[0m20:15:11.646143 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:15:11.646286 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:15:11.647443 [debug] [Thread-1 (]: Writing runtime sql for node "model.retail.dim_product"
+[0m20:15:11.647831 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_product"
+[0m20:15:11.647988 [debug] [Thread-1 (]: On model.retail.dim_product: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_product"} */
+
+  
+    
+      create table quick_start.retail.dim_product
+      
+      
+      
+      
+      
+      
+      as
+      SELECT DISTINCT
+    md5(cast(concat(coalesce(cast(StockCode as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Description as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(UnitPrice as string), '_dbt_utils_surrogate_key_null_')) as string)) AS product_id,
+    StockCode AS stock_code,
+    Description AS description,
+    UnitPrice AS price
+FROM quick_start.retail_raw.raw_invoices
+WHERE StockCode IS NOT NULL
+    AND Description IS NOT NULL
+    AND UnitPrice > 0
+  
+[0m20:15:11.788016 [warn ] [Thread-1 (]: ClickZetta adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_product"} */
+
+  
+    
+      create table quick_start.retail.dim_product
+      
+      
+      
+      
+      
+      
+      as
+      SELECT DISTINCT
+    md5(cast(concat(coalesce(cast(StockCode as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Description as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(UnitPrice as string), '_dbt_utils_surrogate_key_null_')) as string)) AS product_id,
+    StockCode AS stock_code,
+    Description AS description,
+    UnitPrice AS price
+FROM quick_start.retail_raw.raw_invoices
+WHERE StockCode IS NOT NULL
+    AND Description IS NOT NULL
+    AND UnitPrice > 0
+  
+[0m20:15:11.788342 [warn ] [Thread-1 (]: [AdapterEventWarning]: Unable to parse logging event dictionary. Failed to parse args field: Value Execute sql job failed, job_id: 2026053120151164811463799, error_code: CZLH-42000, error: CZLH-42000:[18,6] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices has unexpected type <class 'Exception'> at AdapterEventWarning.args[0].. Dictionary: {'name': 'ClickZetta', 'base_msg': 'Exception {}', 'args': [Exception('Execute sql job failed, job_id: 2026053120151164811463799, error_code: CZLH-42000, error: CZLH-42000:[18,6] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices')], 'node_info': {'node_path': 'transform/dim_product.sql', 'node_name': 'dim_product', 'unique_id': 'model.retail.dim_product', 'resource_type': 'model', 'materialized': 'table', 'node_status': 'executing', 'node_started_at': '2026-05-31T12:15:11.521003', 'node_finished_at': None, 'meta': {}, 'node_relation': {'database': 'quick_start', 'schema': 'retail', 'alias': 'dim_product', 'relation_name': 'quick_start.retail.dim_product'}, 'node_checksum': '533756dc2c772c64256609d41ac1e4dfe029f815d0c2319f6710e8e8e2e30f29'}}
+[0m20:15:11.788505 [warn ] [Thread-1 (]:  adapter: 
+[0m20:15:11.788659 [debug] [Thread-1 (]: ClickZetta adapter: Rolling back transaction.
+[0m20:15:11.789975 [debug] [Thread-1 (]: Runtime Error in model dim_product (models/transform/dim_product.sql)
+  Execute sql job failed, job_id: 2026053120151164811463799, error_code: CZLH-42000, error: CZLH-42000:[18,6] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices
+[0m20:15:11.790181 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '6cd49fc5-111c-45f7-85c9-ec7cd79ab022', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13a29c230>]}
+[0m20:15:11.790451 [error] [Thread-1 (]: 3 of 7 ERROR creating sql table model retail.dim_product ....................... [[31mERROR[0m in 0.27s]
+[0m20:15:11.790663 [debug] [Thread-1 (]: Finished running node model.retail.dim_product
+[0m20:15:11.790847 [debug] [Thread-4 (]: Marking all children of 'model.retail.dim_product' to be skipped because of status 'error'.  Reason: Runtime Error in model dim_product (models/transform/dim_product.sql)
+  Execute sql job failed, job_id: 2026053120151164811463799, error_code: CZLH-42000, error: CZLH-42000:[18,6] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices.
+[0m20:15:11.791209 [debug] [Thread-1 (]: Began running node model.retail.fct_invoices
+[0m20:15:11.791439 [info ] [Thread-1 (]: 4 of 7 SKIP relation retail.fct_invoices ....................................... [[33mSKIP[0m]
+[0m20:15:11.791600 [debug] [Thread-1 (]: Finished running node model.retail.fct_invoices
+[0m20:15:11.791828 [debug] [Thread-1 (]: Began running node model.retail.report_customer_invoices
+[0m20:15:11.792011 [info ] [Thread-1 (]: 5 of 7 SKIP relation retail.report_customer_invoices ........................... [[33mSKIP[0m]
+[0m20:15:11.792228 [debug] [Thread-1 (]: Finished running node model.retail.report_customer_invoices
+[0m20:15:11.792389 [debug] [Thread-1 (]: Began running node model.retail.report_product_invoices
+[0m20:15:11.792575 [info ] [Thread-1 (]: 6 of 7 SKIP relation retail.report_product_invoices ............................ [[33mSKIP[0m]
+[0m20:15:11.792787 [debug] [Thread-1 (]: Finished running node model.retail.report_product_invoices
+[0m20:15:11.792952 [debug] [Thread-1 (]: Began running node model.retail.report_year_invoices
+[0m20:15:11.793119 [info ] [Thread-1 (]: 7 of 7 SKIP relation retail.report_year_invoices ............................... [[33mSKIP[0m]
+[0m20:15:11.793278 [debug] [Thread-1 (]: Finished running node model.retail.report_year_invoices
+[0m20:15:11.793713 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m20:15:11.793876 [debug] [MainThread]: Connection 'model.retail.dim_product' was left open.
+[0m20:15:11.794015 [debug] [MainThread]: On model.retail.dim_product: Close
+[0m20:15:11.794195 [info ] [MainThread]: 
+[0m20:15:11.794340 [info ] [MainThread]: Finished running 7 table models in 0 hours 0 minutes and 2.05 seconds (2.05s).
+[0m20:15:11.794706 [debug] [MainThread]: Command end result
+[0m20:15:11.806832 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/manifest.json
+[0m20:15:11.807748 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/semantic_manifest.json
+[0m20:15:11.810064 [debug] [MainThread]: Wrote artifact RunExecutionResult to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/run_results.json
+[0m20:15:11.810223 [info ] [MainThread]: 
+[0m20:15:11.810386 [info ] [MainThread]: [31mCompleted with 3 errors, 0 partial successes, and 0 warnings:[0m
+[0m20:15:11.810524 [info ] [MainThread]: 
+[0m20:15:11.810680 [error] [MainThread]: [31mFailure in model dim_customer (models/transform/dim_customer.sql)[0m
+[0m20:15:11.810829 [error] [MainThread]:   Runtime Error in model dim_customer (models/transform/dim_customer.sql)
+  Execute sql job failed, job_id: 2026053120151101259059586, error_code: CZLH-42000, error: CZLH-42000:[17,10] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices
+  CZLH-42000:[24,11] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_country
+[0m20:15:11.810951 [info ] [MainThread]: 
+[0m20:15:11.811081 [info ] [MainThread]:   compiled code at target/compiled/retail/models/transform/dim_customer.sql
+[0m20:15:11.811194 [info ] [MainThread]: 
+[0m20:15:11.811325 [error] [MainThread]: [31mFailure in model dim_datetime (models/transform/dim_datetime.sql)[0m
+[0m20:15:11.811455 [error] [MainThread]:   Runtime Error in model dim_datetime (models/transform/dim_datetime.sql)
+  Execute sql job failed, job_id: 2026053120151132131949809, error_code: CZLH-42000, error: CZLH-42000:[17,10] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices
+[0m20:15:11.811565 [info ] [MainThread]: 
+[0m20:15:11.811692 [info ] [MainThread]:   compiled code at target/compiled/retail/models/transform/dim_datetime.sql
+[0m20:15:11.811801 [info ] [MainThread]: 
+[0m20:15:11.811933 [error] [MainThread]: [31mFailure in model dim_product (models/transform/dim_product.sql)[0m
+[0m20:15:11.812068 [error] [MainThread]:   Runtime Error in model dim_product (models/transform/dim_product.sql)
+  Execute sql job failed, job_id: 2026053120151164811463799, error_code: CZLH-42000, error: CZLH-42000:[18,6] Semantic analysis exception - table or view not found - quick_start.retail_raw.raw_invoices
+[0m20:15:11.812180 [info ] [MainThread]: 
+[0m20:15:11.812304 [info ] [MainThread]:   compiled code at target/compiled/retail/models/transform/dim_product.sql
+[0m20:15:11.812423 [info ] [MainThread]: 
+[0m20:15:11.812557 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=3 SKIP=4 NO-OP=0 TOTAL=7
+[0m20:15:11.815135 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 3.0782766, "process_in_blocks": "0", "process_kernel_time": 4.154537, "process_mem_max_rss": "203505664", "process_out_blocks": "0", "process_user_time": 1.748189}
+[0m20:15:11.815389 [debug] [MainThread]: Command `dbt run` failed at 20:15:11.815352 after 3.08 seconds
+[0m20:15:11.815565 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ca27440>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c652000>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c653020>]}
+[0m20:15:11.815717 [debug] [MainThread]: Flushing usage events
+[0m20:15:13.491404 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:17:18.282663 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10acde180>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b36bfb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b36bec0>]}
+
+
+============================== 20:17:18.286132 | 9c496e9c-36d3-4c97-b859-0f75ce4e8478 ==============================
+[0m20:17:18.286132 [info ] [MainThread]: Running with dbt=1.10.8
+[0m20:17:18.286413 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/logs', 'profiles_dir': '.', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'log_format': 'default', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt run --profiles-dir .', 'send_anonymous_usage_stats': 'True'}
+[0m20:17:19.060351 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x137cbaa20>]}
+[0m20:17:19.081855 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a7edcd0>]}
+[0m20:17:19.084572 [info ] [MainThread]: Registered adapter: clickzetta=1.7.10
+[0m20:17:19.145091 [debug] [MainThread]: checksum: 265d66e81f90af29a7a28579c9b54d938c94f4a57c57be5f853267ae509b5fcb, vars: {}, profile: , target: , version: 1.10.8
+[0m20:17:19.219716 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 5 files changed.
+[0m20:17:19.220270 [debug] [MainThread]: Partial parsing: updated file: retail://models/sources/sources.yml
+[0m20:17:19.220448 [debug] [MainThread]: Partial parsing: updated file: retail://models/transform/fct_invoices.sql
+[0m20:17:19.220588 [debug] [MainThread]: Partial parsing: updated file: retail://models/transform/dim_customer.sql
+[0m20:17:19.220721 [debug] [MainThread]: Partial parsing: updated file: retail://models/transform/dim_datetime.sql
+[0m20:17:19.220851 [debug] [MainThread]: Partial parsing: updated file: retail://models/transform/dim_product.sql
+[0m20:17:19.366136 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1383beab0>]}
+[0m20:17:19.396575 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/manifest.json
+[0m20:17:19.398157 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/semantic_manifest.json
+[0m20:17:19.409635 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13855bce0>]}
+[0m20:17:19.409907 [info ] [MainThread]: Found 2 seeds, 7 models, 2 sources, 609 macros
+[0m20:17:19.410069 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13857bfb0>]}
+[0m20:17:19.410788 [info ] [MainThread]: 
+[0m20:17:19.410971 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m20:17:19.411113 [info ] [MainThread]: 
+[0m20:17:19.411333 [debug] [MainThread]: Acquiring new clickzetta connection 'master'
+[0m20:17:19.413482 [debug] [ThreadPool]: Acquiring new clickzetta connection 'list_quick_start'
+[0m20:17:19.417504 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start"
+[0m20:17:19.417704 [debug] [ThreadPool]: On list_quick_start: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start"} */
+
+    show schemas in quick_start
+  
+[0m20:17:19.417843 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:17:19.845032 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:19.845316 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.427 seconds
+[0m20:17:19.845460 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:17:19.845585 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:19.857594 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_quick_start, now list_quick_start_retail)
+[0m20:17:19.858627 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail"
+[0m20:17:19.858811 [debug] [ThreadPool]: On list_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail"} */
+
+    show schemas in quick_start
+  
+[0m20:17:19.976400 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:19.976694 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.118 seconds
+[0m20:17:19.976836 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:17:19.976957 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:19.979647 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail"
+[0m20:17:19.979885 [debug] [ThreadPool]: On list_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail"} */
+show tables in quick_start.retail
+  
+[0m20:17:20.037583 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:20.037867 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.058 seconds
+[0m20:17:20.038015 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show tables in quick_start.retail
+  
+[0m20:17:20.038213 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:20.038764 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail"
+[0m20:17:20.038930 [debug] [ThreadPool]: On list_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail"} */
+show streams in quick_start.retail
+[0m20:17:20.099001 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:20.099283 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.060 seconds
+[0m20:17:20.099429 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show streams in quick_start.retail
+[0m20:17:20.099565 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:20.100110 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_quick_start_retail, now list_quick_start_retail_raw)
+[0m20:17:20.101612 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:17:20.101869 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+
+    show schemas in quick_start
+  
+[0m20:17:20.218031 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:20.218302 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.116 seconds
+[0m20:17:20.218435 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:17:20.218553 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:20.219881 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:17:20.220036 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+show tables in quick_start.retail_raw
+  
+[0m20:17:20.368807 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:20.369404 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.149 seconds
+[0m20:17:20.369596 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show tables in quick_start.retail_raw
+  
+[0m20:17:20.369736 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:20.373223 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:17:20.373433 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+show streams in quick_start.retail_raw
+[0m20:17:20.449323 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:20.449569 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.076 seconds
+[0m20:17:20.449698 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show streams in quick_start.retail_raw
+[0m20:17:20.449822 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:17:20.450520 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x138425eb0>]}
+[0m20:17:20.455425 [debug] [Thread-1 (]: Began running node model.retail.dim_customer
+[0m20:17:20.455735 [info ] [Thread-1 (]: 1 of 7 START sql table model retail.dim_customer ............................... [RUN]
+[0m20:17:20.455957 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_quick_start_retail_raw, now model.retail.dim_customer)
+[0m20:17:20.456108 [debug] [Thread-1 (]: Began compiling node model.retail.dim_customer
+[0m20:17:20.459580 [debug] [Thread-1 (]: Writing injected SQL for node "model.retail.dim_customer"
+[0m20:17:20.460053 [debug] [Thread-1 (]: Began executing node model.retail.dim_customer
+[0m20:17:20.472577 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_customer"
+[0m20:17:20.472804 [debug] [Thread-1 (]: On model.retail.dim_customer: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_customer"} */
+
+    SHOW TABLES IN quick_start.retail LIKE 'dim_customer'
+  
+[0m20:17:20.530279 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:20.530569 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.058 seconds
+[0m20:17:20.530730 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW TABLES IN quick_start.retail LIKE 'dim_customer'
+  
+[0m20:17:20.530872 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:20.531467 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_customer"
+[0m20:17:20.531621 [debug] [Thread-1 (]: On model.retail.dim_customer: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_customer"} */
+
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:20.589228 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:20.589513 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.058 seconds
+[0m20:17:20.589668 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:20.589804 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:20.602463 [debug] [Thread-1 (]: Writing runtime sql for node "model.retail.dim_customer"
+[0m20:17:20.603012 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_customer"
+[0m20:17:20.603190 [debug] [Thread-1 (]: On model.retail.dim_customer: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_customer"} */
+
+  
+    
+      create table quick_start.retail.dim_customer
+      
+      
+      
+      
+      
+      
+      as
+      WITH customer_cte AS (
+    SELECT DISTINCT
+        md5(cast(concat(coalesce(cast(CustomerID as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Country as string), '_dbt_utils_surrogate_key_null_')) as string)) AS customer_id,
+        Country AS country
+    FROM quick_start.retail_raw.online_retail
+    WHERE CustomerID IS NOT NULL
+)
+SELECT
+    t.*,
+    cm.iso
+FROM customer_cte t
+LEFT JOIN quick_start.retail_raw.country cm ON t.country = cm.nicename
+  
+[0m20:17:21.238597 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:21.238923 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.636 seconds
+[0m20:17:21.239099 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+  
+    
+      create table quick_start.retail.dim_customer
+      
+      
+      
+      
+      
+      
+      as
+      WITH customer_cte AS (
+    SELECT DISTINCT
+        md5(cast(concat(coalesce(cast(CustomerID as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Country as string), '_dbt_utils_surrogate_key_null_')) as string)) AS customer_id,
+        Country AS country
+    FROM quick_start.retail_raw.online_retail
+    WHERE CustomerID IS NOT NULL
+)
+SELECT
+    t.*,
+    cm.iso
+FROM customer_cte t
+LEFT JOIN quick_start.retail_raw.country cm ON t.country = cm.nicename
+  
+[0m20:17:21.239262 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:21.251942 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1385b9850>]}
+[0m20:17:21.252295 [info ] [Thread-1 (]: 1 of 7 OK created sql table model retail.dim_customer .......................... [[32mSUCCESS 1[0m in 0.79s]
+[0m20:17:21.252542 [debug] [Thread-1 (]: Finished running node model.retail.dim_customer
+[0m20:17:21.252716 [debug] [Thread-1 (]: Began running node model.retail.dim_datetime
+[0m20:17:21.252965 [info ] [Thread-1 (]: 2 of 7 START sql table model retail.dim_datetime ............................... [RUN]
+[0m20:17:21.253212 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.retail.dim_customer, now model.retail.dim_datetime)
+[0m20:17:21.253377 [debug] [Thread-1 (]: Began compiling node model.retail.dim_datetime
+[0m20:17:21.254557 [debug] [Thread-1 (]: Writing injected SQL for node "model.retail.dim_datetime"
+[0m20:17:21.254962 [debug] [Thread-1 (]: Began executing node model.retail.dim_datetime
+[0m20:17:21.290800 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_datetime"
+[0m20:17:21.291100 [debug] [Thread-1 (]: On model.retail.dim_datetime: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_datetime"} */
+
+    SHOW TABLES IN quick_start.retail LIKE 'dim_datetime'
+  
+[0m20:17:21.417421 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:21.417723 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.126 seconds
+[0m20:17:21.417891 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW TABLES IN quick_start.retail LIKE 'dim_datetime'
+  
+[0m20:17:21.418036 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:21.418638 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_datetime"
+[0m20:17:21.418798 [debug] [Thread-1 (]: On model.retail.dim_datetime: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_datetime"} */
+
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:21.477723 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:21.478033 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.059 seconds
+[0m20:17:21.478192 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:21.478335 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:21.479540 [debug] [Thread-1 (]: Writing runtime sql for node "model.retail.dim_datetime"
+[0m20:17:21.480038 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_datetime"
+[0m20:17:21.480197 [debug] [Thread-1 (]: On model.retail.dim_datetime: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_datetime"} */
+
+  
+    
+      create table quick_start.retail.dim_datetime
+      
+      
+      
+      
+      
+      
+      as
+      WITH datetime_cte AS (
+    SELECT DISTINCT
+        CAST(InvoiceDate AS varchar) AS datetime_id,
+        DATE_FORMAT(InvoiceDate, 'yyyy-MM-dd HH:mm:ss') AS date_part
+    FROM quick_start.retail_raw.online_retail
+    WHERE InvoiceDate IS NOT NULL
+)
+SELECT
+    datetime_id,
+    CAST(date_part AS timestamp) AS datetime,
+    SUBSTR(date_part, 9, 2) AS day,
+    SUBSTR(date_part, 6, 2) AS month,
+    SUBSTR(date_part, 1, 4) AS year,
+    SUBSTR(date_part, 12, 2) AS hour,
+    SUBSTR(date_part, 15, 2) AS minute,
+    DAYOFWEEK(CAST(date_part AS timestamp)) AS weekday
+FROM datetime_cte
+  
+[0m20:17:22.160504 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:22.160800 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.680 seconds
+[0m20:17:22.160969 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+  
+    
+      create table quick_start.retail.dim_datetime
+      
+      
+      
+      
+      
+      
+      as
+      WITH datetime_cte AS (
+    SELECT DISTINCT
+        CAST(InvoiceDate AS varchar) AS datetime_id,
+        DATE_FORMAT(InvoiceDate, 'yyyy-MM-dd HH:mm:ss') AS date_part
+    FROM quick_start.retail_raw.online_retail
+    WHERE InvoiceDate IS NOT NULL
+)
+SELECT
+    datetime_id,
+    CAST(date_part AS timestamp) AS datetime,
+    SUBSTR(date_part, 9, 2) AS day,
+    SUBSTR(date_part, 6, 2) AS month,
+    SUBSTR(date_part, 1, 4) AS year,
+    SUBSTR(date_part, 12, 2) AS hour,
+    SUBSTR(date_part, 15, 2) AS minute,
+    DAYOFWEEK(CAST(date_part AS timestamp)) AS weekday
+FROM datetime_cte
+  
+[0m20:17:22.161118 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:22.161947 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1386a89b0>]}
+[0m20:17:22.162209 [info ] [Thread-1 (]: 2 of 7 OK created sql table model retail.dim_datetime .......................... [[32mSUCCESS 1[0m in 0.91s]
+[0m20:17:22.162430 [debug] [Thread-1 (]: Finished running node model.retail.dim_datetime
+[0m20:17:22.162594 [debug] [Thread-1 (]: Began running node model.retail.dim_product
+[0m20:17:22.162842 [info ] [Thread-1 (]: 3 of 7 START sql table model retail.dim_product ................................ [RUN]
+[0m20:17:22.163063 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.retail.dim_datetime, now model.retail.dim_product)
+[0m20:17:22.163220 [debug] [Thread-1 (]: Began compiling node model.retail.dim_product
+[0m20:17:22.165019 [debug] [Thread-1 (]: Writing injected SQL for node "model.retail.dim_product"
+[0m20:17:22.165532 [debug] [Thread-1 (]: Began executing node model.retail.dim_product
+[0m20:17:22.167223 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_product"
+[0m20:17:22.167393 [debug] [Thread-1 (]: On model.retail.dim_product: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_product"} */
+
+    SHOW TABLES IN quick_start.retail LIKE 'dim_product'
+  
+[0m20:17:22.229397 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:22.229665 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.062 seconds
+[0m20:17:22.229812 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW TABLES IN quick_start.retail LIKE 'dim_product'
+  
+[0m20:17:22.229950 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:22.230514 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_product"
+[0m20:17:22.230671 [debug] [Thread-1 (]: On model.retail.dim_product: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_product"} */
+
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:22.289794 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:22.290039 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.059 seconds
+[0m20:17:22.290177 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:22.290310 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:22.291418 [debug] [Thread-1 (]: Writing runtime sql for node "model.retail.dim_product"
+[0m20:17:22.291897 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.dim_product"
+[0m20:17:22.292056 [debug] [Thread-1 (]: On model.retail.dim_product: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.dim_product"} */
+
+  
+    
+      create table quick_start.retail.dim_product
+      
+      
+      
+      
+      
+      
+      as
+      SELECT DISTINCT
+    md5(cast(concat(coalesce(cast(StockCode as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Description as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(UnitPrice as string), '_dbt_utils_surrogate_key_null_')) as string)) AS product_id,
+    StockCode AS stock_code,
+    Description AS description,
+    UnitPrice AS price
+FROM quick_start.retail_raw.online_retail
+WHERE StockCode IS NOT NULL
+    AND Description IS NOT NULL
+    AND UnitPrice > 0
+  
+[0m20:17:23.064113 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:23.064499 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.772 seconds
+[0m20:17:23.064730 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+  
+    
+      create table quick_start.retail.dim_product
+      
+      
+      
+      
+      
+      
+      as
+      SELECT DISTINCT
+    md5(cast(concat(coalesce(cast(StockCode as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Description as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(UnitPrice as string), '_dbt_utils_surrogate_key_null_')) as string)) AS product_id,
+    StockCode AS stock_code,
+    Description AS description,
+    UnitPrice AS price
+FROM quick_start.retail_raw.online_retail
+WHERE StockCode IS NOT NULL
+    AND Description IS NOT NULL
+    AND UnitPrice > 0
+  
+[0m20:17:23.064937 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:23.066097 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1376a34a0>]}
+[0m20:17:23.066504 [info ] [Thread-1 (]: 3 of 7 OK created sql table model retail.dim_product ........................... [[32mSUCCESS 1[0m in 0.90s]
+[0m20:17:23.066817 [debug] [Thread-1 (]: Finished running node model.retail.dim_product
+[0m20:17:23.067246 [debug] [Thread-1 (]: Began running node model.retail.fct_invoices
+[0m20:17:23.067595 [info ] [Thread-1 (]: 4 of 7 START sql table model retail.fct_invoices ............................... [RUN]
+[0m20:17:23.067926 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.retail.dim_product, now model.retail.fct_invoices)
+[0m20:17:23.068151 [debug] [Thread-1 (]: Began compiling node model.retail.fct_invoices
+[0m20:17:23.071707 [debug] [Thread-1 (]: Writing injected SQL for node "model.retail.fct_invoices"
+[0m20:17:23.072354 [debug] [Thread-1 (]: Began executing node model.retail.fct_invoices
+[0m20:17:23.074746 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.fct_invoices"
+[0m20:17:23.075040 [debug] [Thread-1 (]: On model.retail.fct_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.fct_invoices"} */
+
+    SHOW TABLES IN quick_start.retail LIKE 'fct_invoices'
+  
+[0m20:17:23.134015 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:23.134315 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.059 seconds
+[0m20:17:23.134479 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW TABLES IN quick_start.retail LIKE 'fct_invoices'
+  
+[0m20:17:23.134627 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:23.135217 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.fct_invoices"
+[0m20:17:23.135378 [debug] [Thread-1 (]: On model.retail.fct_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.fct_invoices"} */
+
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:23.195426 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:23.195760 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.060 seconds
+[0m20:17:23.195928 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:23.196075 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:23.197235 [debug] [Thread-1 (]: Writing runtime sql for node "model.retail.fct_invoices"
+[0m20:17:23.197673 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.fct_invoices"
+[0m20:17:23.197843 [debug] [Thread-1 (]: On model.retail.fct_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.fct_invoices"} */
+
+  
+    
+      create table quick_start.retail.fct_invoices
+      
+      
+      
+      
+      
+      
+      as
+      WITH fct_invoices_cte AS (
+    SELECT
+        InvoiceNo AS invoice_id,
+        CAST(InvoiceDate AS varchar) AS datetime_id,
+        md5(cast(concat(coalesce(cast(StockCode as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Description as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(UnitPrice as string), '_dbt_utils_surrogate_key_null_')) as string)) AS product_id,
+        md5(cast(concat(coalesce(cast(CustomerID as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Country as string), '_dbt_utils_surrogate_key_null_')) as string)) AS customer_id,
+        Quantity AS quantity,
+        Quantity * UnitPrice AS total
+    FROM quick_start.retail_raw.online_retail
+    WHERE Quantity > 0
+)
+SELECT
+    invoice_id,
+    dt.datetime_id,
+    dp.product_id,
+    dc.customer_id,
+    quantity,
+    total
+FROM fct_invoices_cte fi
+INNER JOIN quick_start.retail.dim_datetime dt ON fi.datetime_id = dt.datetime_id
+INNER JOIN quick_start.retail.dim_product dp ON fi.product_id = dp.product_id
+INNER JOIN quick_start.retail.dim_customer dc ON fi.customer_id = dc.customer_id
+  
+[0m20:17:24.039009 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:24.039319 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.841 seconds
+[0m20:17:24.039497 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+  
+    
+      create table quick_start.retail.fct_invoices
+      
+      
+      
+      
+      
+      
+      as
+      WITH fct_invoices_cte AS (
+    SELECT
+        InvoiceNo AS invoice_id,
+        CAST(InvoiceDate AS varchar) AS datetime_id,
+        md5(cast(concat(coalesce(cast(StockCode as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Description as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(UnitPrice as string), '_dbt_utils_surrogate_key_null_')) as string)) AS product_id,
+        md5(cast(concat(coalesce(cast(CustomerID as string), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(Country as string), '_dbt_utils_surrogate_key_null_')) as string)) AS customer_id,
+        Quantity AS quantity,
+        Quantity * UnitPrice AS total
+    FROM quick_start.retail_raw.online_retail
+    WHERE Quantity > 0
+)
+SELECT
+    invoice_id,
+    dt.datetime_id,
+    dp.product_id,
+    dc.customer_id,
+    quantity,
+    total
+FROM fct_invoices_cte fi
+INNER JOIN quick_start.retail.dim_datetime dt ON fi.datetime_id = dt.datetime_id
+INNER JOIN quick_start.retail.dim_product dp ON fi.product_id = dp.product_id
+INNER JOIN quick_start.retail.dim_customer dc ON fi.customer_id = dc.customer_id
+  
+[0m20:17:24.039668 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:24.040543 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x137dfec00>]}
+[0m20:17:24.040837 [info ] [Thread-1 (]: 4 of 7 OK created sql table model retail.fct_invoices .......................... [[32mSUCCESS 1[0m in 0.97s]
+[0m20:17:24.041065 [debug] [Thread-1 (]: Finished running node model.retail.fct_invoices
+[0m20:17:24.041405 [debug] [Thread-1 (]: Began running node model.retail.report_customer_invoices
+[0m20:17:24.041660 [info ] [Thread-1 (]: 5 of 7 START sql table model retail.report_customer_invoices ................... [RUN]
+[0m20:17:24.042584 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.retail.fct_invoices, now model.retail.report_customer_invoices)
+[0m20:17:24.042761 [debug] [Thread-1 (]: Began compiling node model.retail.report_customer_invoices
+[0m20:17:24.043975 [debug] [Thread-1 (]: Writing injected SQL for node "model.retail.report_customer_invoices"
+[0m20:17:24.044554 [debug] [Thread-1 (]: Began executing node model.retail.report_customer_invoices
+[0m20:17:24.046190 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.report_customer_invoices"
+[0m20:17:24.046363 [debug] [Thread-1 (]: On model.retail.report_customer_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.report_customer_invoices"} */
+
+    SHOW TABLES IN quick_start.retail LIKE 'report_customer_invoices'
+  
+[0m20:17:24.108331 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:24.108610 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.062 seconds
+[0m20:17:24.108761 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW TABLES IN quick_start.retail LIKE 'report_customer_invoices'
+  
+[0m20:17:24.108897 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:24.109475 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.report_customer_invoices"
+[0m20:17:24.109629 [debug] [Thread-1 (]: On model.retail.report_customer_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.report_customer_invoices"} */
+
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:24.170401 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:24.170693 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.061 seconds
+[0m20:17:24.170842 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:24.170981 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:24.172227 [debug] [Thread-1 (]: Writing runtime sql for node "model.retail.report_customer_invoices"
+[0m20:17:24.172790 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.report_customer_invoices"
+[0m20:17:24.172955 [debug] [Thread-1 (]: On model.retail.report_customer_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.report_customer_invoices"} */
+
+  
+    
+      create table quick_start.retail.report_customer_invoices
+      
+      
+      
+      
+      
+      
+      as
+      SELECT
+    c.country,
+    c.iso,
+    COUNT(fi.invoice_id) AS total_invoices,
+    SUM(fi.total) AS total_revenue
+FROM quick_start.retail.fct_invoices fi
+JOIN quick_start.retail.dim_customer c ON fi.customer_id = c.customer_id
+GROUP BY c.country, c.iso
+ORDER BY total_revenue DESC
+LIMIT 10
+  
+[0m20:17:24.563284 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:24.563591 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.390 seconds
+[0m20:17:24.563755 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+  
+    
+      create table quick_start.retail.report_customer_invoices
+      
+      
+      
+      
+      
+      
+      as
+      SELECT
+    c.country,
+    c.iso,
+    COUNT(fi.invoice_id) AS total_invoices,
+    SUM(fi.total) AS total_revenue
+FROM quick_start.retail.fct_invoices fi
+JOIN quick_start.retail.dim_customer c ON fi.customer_id = c.customer_id
+GROUP BY c.country, c.iso
+ORDER BY total_revenue DESC
+LIMIT 10
+  
+[0m20:17:24.563907 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:24.564745 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x137ddf230>]}
+[0m20:17:24.565017 [info ] [Thread-1 (]: 5 of 7 OK created sql table model retail.report_customer_invoices .............. [[32mSUCCESS 1[0m in 0.52s]
+[0m20:17:24.565242 [debug] [Thread-1 (]: Finished running node model.retail.report_customer_invoices
+[0m20:17:24.565404 [debug] [Thread-1 (]: Began running node model.retail.report_product_invoices
+[0m20:17:24.565638 [info ] [Thread-1 (]: 6 of 7 START sql table model retail.report_product_invoices .................... [RUN]
+[0m20:17:24.565873 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.retail.report_customer_invoices, now model.retail.report_product_invoices)
+[0m20:17:24.566034 [debug] [Thread-1 (]: Began compiling node model.retail.report_product_invoices
+[0m20:17:24.567327 [debug] [Thread-1 (]: Writing injected SQL for node "model.retail.report_product_invoices"
+[0m20:17:24.567785 [debug] [Thread-1 (]: Began executing node model.retail.report_product_invoices
+[0m20:17:24.569362 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.report_product_invoices"
+[0m20:17:24.569512 [debug] [Thread-1 (]: On model.retail.report_product_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.report_product_invoices"} */
+
+    SHOW TABLES IN quick_start.retail LIKE 'report_product_invoices'
+  
+[0m20:17:24.626918 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:24.627162 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.058 seconds
+[0m20:17:24.627306 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW TABLES IN quick_start.retail LIKE 'report_product_invoices'
+  
+[0m20:17:24.627442 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:24.628001 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.report_product_invoices"
+[0m20:17:24.628155 [debug] [Thread-1 (]: On model.retail.report_product_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.report_product_invoices"} */
+
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:24.687617 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:24.687913 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.060 seconds
+[0m20:17:24.688073 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:24.688213 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:24.689368 [debug] [Thread-1 (]: Writing runtime sql for node "model.retail.report_product_invoices"
+[0m20:17:24.689857 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.report_product_invoices"
+[0m20:17:24.690026 [debug] [Thread-1 (]: On model.retail.report_product_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.report_product_invoices"} */
+
+  
+    
+      create table quick_start.retail.report_product_invoices
+      
+      
+      
+      
+      
+      
+      as
+      SELECT
+    p.product_id,
+    p.stock_code,
+    p.description,
+    SUM(fi.quantity) AS total_quantity_sold
+FROM quick_start.retail.fct_invoices fi
+JOIN quick_start.retail.dim_product p ON fi.product_id = p.product_id
+GROUP BY p.product_id, p.stock_code, p.description
+ORDER BY total_quantity_sold DESC
+LIMIT 10
+  
+[0m20:17:25.148018 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:25.148340 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.458 seconds
+[0m20:17:25.148513 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+  
+    
+      create table quick_start.retail.report_product_invoices
+      
+      
+      
+      
+      
+      
+      as
+      SELECT
+    p.product_id,
+    p.stock_code,
+    p.description,
+    SUM(fi.quantity) AS total_quantity_sold
+FROM quick_start.retail.fct_invoices fi
+JOIN quick_start.retail.dim_product p ON fi.product_id = p.product_id
+GROUP BY p.product_id, p.stock_code, p.description
+ORDER BY total_quantity_sold DESC
+LIMIT 10
+  
+[0m20:17:25.148672 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:25.149516 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x138454050>]}
+[0m20:17:25.149789 [info ] [Thread-1 (]: 6 of 7 OK created sql table model retail.report_product_invoices ............... [[32mSUCCESS 1[0m in 0.58s]
+[0m20:17:25.150010 [debug] [Thread-1 (]: Finished running node model.retail.report_product_invoices
+[0m20:17:25.150178 [debug] [Thread-1 (]: Began running node model.retail.report_year_invoices
+[0m20:17:25.150406 [info ] [Thread-1 (]: 7 of 7 START sql table model retail.report_year_invoices ....................... [RUN]
+[0m20:17:25.150667 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.retail.report_product_invoices, now model.retail.report_year_invoices)
+[0m20:17:25.150835 [debug] [Thread-1 (]: Began compiling node model.retail.report_year_invoices
+[0m20:17:25.152140 [debug] [Thread-1 (]: Writing injected SQL for node "model.retail.report_year_invoices"
+[0m20:17:25.152620 [debug] [Thread-1 (]: Began executing node model.retail.report_year_invoices
+[0m20:17:25.155006 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.report_year_invoices"
+[0m20:17:25.155183 [debug] [Thread-1 (]: On model.retail.report_year_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.report_year_invoices"} */
+
+    SHOW TABLES IN quick_start.retail LIKE 'report_year_invoices'
+  
+[0m20:17:25.213882 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:25.214196 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.059 seconds
+[0m20:17:25.214360 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW TABLES IN quick_start.retail LIKE 'report_year_invoices'
+  
+[0m20:17:25.214505 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:25.215092 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.report_year_invoices"
+[0m20:17:25.215258 [debug] [Thread-1 (]: On model.retail.report_year_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.report_year_invoices"} */
+
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:25.275738 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:25.276033 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.061 seconds
+[0m20:17:25.276193 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    SHOW STREAMS IN quick_start.retail
+  
+[0m20:17:25.276335 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:17:25.277529 [debug] [Thread-1 (]: Writing runtime sql for node "model.retail.report_year_invoices"
+[0m20:17:25.278033 [debug] [Thread-1 (]: Using clickzetta connection "model.retail.report_year_invoices"
+[0m20:17:25.278195 [debug] [Thread-1 (]: On model.retail.report_year_invoices: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "model.retail.report_year_invoices"} */
+
+  
+    
+      create table quick_start.retail.report_year_invoices
+      
+      
+      
+      
+      
+      
+      as
+      SELECT
+    dt.year,
+    dt.month,
+    COUNT(DISTINCT fi.invoice_id) AS num_invoices,
+    SUM(fi.total) AS total_revenue
+FROM quick_start.retail.fct_invoices fi
+JOIN quick_start.retail.dim_datetime dt ON fi.datetime_id = dt.datetime_id
+GROUP BY dt.year, dt.month
+ORDER BY dt.year, dt.month
+  
+[0m20:17:25.616829 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:25.617147 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.339 seconds
+[0m20:17:25.617325 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+  
+    
+      create table quick_start.retail.report_year_invoices
+      
+      
+      
+      
+      
+      
+      as
+      SELECT
+    dt.year,
+    dt.month,
+    COUNT(DISTINCT fi.invoice_id) AS num_invoices,
+    SUM(fi.total) AS total_revenue
+FROM quick_start.retail.fct_invoices fi
+JOIN quick_start.retail.dim_datetime dt ON fi.datetime_id = dt.datetime_id
+GROUP BY dt.year, dt.month
+ORDER BY dt.year, dt.month
+  
+[0m20:17:25.617481 [debug] [Thread-1 (]: ClickZetta adapter: code: 1
+[0m20:17:25.618348 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '9c496e9c-36d3-4c97-b859-0f75ce4e8478', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1384249e0>]}
+[0m20:17:25.618637 [info ] [Thread-1 (]: 7 of 7 OK created sql table model retail.report_year_invoices .................. [[32mSUCCESS 1[0m in 0.47s]
+[0m20:17:25.618877 [debug] [Thread-1 (]: Finished running node model.retail.report_year_invoices
+[0m20:17:25.619393 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m20:17:25.619549 [debug] [MainThread]: Connection 'model.retail.report_year_invoices' was left open.
+[0m20:17:25.619675 [debug] [MainThread]: On model.retail.report_year_invoices: Close
+[0m20:17:25.619857 [info ] [MainThread]: 
+[0m20:17:25.620001 [info ] [MainThread]: Finished running 7 table models in 0 hours 0 minutes and 6.21 seconds (6.21s).
+[0m20:17:25.620491 [debug] [MainThread]: Command end result
+[0m20:17:25.630323 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/manifest.json
+[0m20:17:25.631306 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/semantic_manifest.json
+[0m20:17:25.633746 [debug] [MainThread]: Wrote artifact RunExecutionResult to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/run_results.json
+[0m20:17:25.633927 [info ] [MainThread]: 
+[0m20:17:25.634097 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m20:17:25.634229 [info ] [MainThread]: 
+[0m20:17:25.634373 [info ] [MainThread]: Done. PASS=7 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=7
+[0m20:17:25.637024 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 7.38481, "process_in_blocks": "0", "process_kernel_time": 4.128016, "process_mem_max_rss": "210305024", "process_out_blocks": "0", "process_user_time": 2.3924}
+[0m20:17:25.637295 [debug] [MainThread]: Command `dbt run` succeeded at 20:17:25.637258 after 7.39 seconds
+[0m20:17:25.637466 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b1bc8f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1383f7290>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10248b080>]}
+[0m20:17:25.637629 [debug] [MainThread]: Flushing usage events
+[0m20:17:27.485991 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:17:47.515494 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d48bfe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10de2ffb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10de2fef0>]}
+
+
+============================== 20:17:47.518033 | 9ffa1320-b09f-469b-8876-2a54e9c795ed ==============================
+[0m20:17:47.518033 [info ] [MainThread]: Running with dbt=1.10.8
+[0m20:17:47.518305 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '.', 'version_check': 'True', 'fail_fast': 'False', 'log_path': '/Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/logs', 'debug': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'invocation_command': 'dbt test --profiles-dir .', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m20:17:48.066129 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '9ffa1320-b09f-469b-8876-2a54e9c795ed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f2be090>]}
+[0m20:17:48.088676 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '9ffa1320-b09f-469b-8876-2a54e9c795ed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d297f80>]}
+[0m20:17:48.089268 [info ] [MainThread]: Registered adapter: clickzetta=1.7.10
+[0m20:17:48.149688 [debug] [MainThread]: checksum: 265d66e81f90af29a7a28579c9b54d938c94f4a57c57be5f853267ae509b5fcb, vars: {}, profile: , target: , version: 1.10.8
+[0m20:17:48.213299 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m20:17:48.213579 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m20:17:48.231161 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '9ffa1320-b09f-469b-8876-2a54e9c795ed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dc7deb0>]}
+[0m20:17:48.263100 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/manifest.json
+[0m20:17:48.264413 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/semantic_manifest.json
+[0m20:17:48.277733 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '9ffa1320-b09f-469b-8876-2a54e9c795ed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13a888c20>]}
+[0m20:17:48.278031 [info ] [MainThread]: Found 2 seeds, 7 models, 2 sources, 609 macros
+[0m20:17:48.278203 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '9ffa1320-b09f-469b-8876-2a54e9c795ed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13a8a9a30>]}
+[0m20:17:48.278833 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m20:17:48.279601 [debug] [MainThread]: Command end result
+[0m20:17:48.289877 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/manifest.json
+[0m20:17:48.290826 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/semantic_manifest.json
+[0m20:17:48.292309 [debug] [MainThread]: Wrote artifact RunExecutionResult to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/run_results.json
+[0m20:17:48.294452 [debug] [MainThread]: Resource report: {"command_name": "test", "command_success": true, "command_wall_clock_time": 0.80755556, "process_in_blocks": "0", "process_kernel_time": 4.321347, "process_mem_max_rss": "198639616", "process_out_blocks": "0", "process_user_time": 1.58365}
+[0m20:17:48.294817 [debug] [MainThread]: Command `dbt test` succeeded at 20:17:48.294776 after 0.81 seconds
+[0m20:17:48.295012 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d48bfe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13a0ae390>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dc1f500>]}
+[0m20:17:48.295186 [debug] [MainThread]: Flushing usage events
+[0m20:17:50.525524 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:18:27.990342 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ab60d70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b558c20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b6fffe0>]}
+
+
+============================== 20:18:27.993753 | d2a5472d-21d9-4fd9-977b-acbd6aa2a5c2 ==============================
+[0m20:18:27.993753 [info ] [MainThread]: Running with dbt=1.10.8
+[0m20:18:27.994050 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '.', 'debug': 'False', 'version_check': 'True', 'log_path': '/Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'invocation_command': 'dbt test --profiles-dir .', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m20:18:28.726172 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'd2a5472d-21d9-4fd9-977b-acbd6aa2a5c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1380abf80>]}
+[0m20:18:28.747784 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'd2a5472d-21d9-4fd9-977b-acbd6aa2a5c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ab62420>]}
+[0m20:18:28.752511 [info ] [MainThread]: Registered adapter: clickzetta=1.7.10
+[0m20:18:28.813225 [debug] [MainThread]: checksum: 265d66e81f90af29a7a28579c9b54d938c94f4a57c57be5f853267ae509b5fcb, vars: {}, profile: , target: , version: 1.10.8
+[0m20:18:28.886860 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m20:18:28.887233 [debug] [MainThread]: Partial parsing: added file: retail://models/schema.yml
+[0m20:18:28.954828 [warn ] [MainThread]: [[33mWARNING[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated
+functionality
+Found top-level arguments to test `relationships`. Arguments to generic tests
+should be nested under the `arguments` property.`
+[0m20:18:28.955178 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'd2a5472d-21d9-4fd9-977b-acbd6aa2a5c2', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1385f4d70>]}
+[0m20:18:29.001774 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'd2a5472d-21d9-4fd9-977b-acbd6aa2a5c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1387244a0>]}
+[0m20:18:29.037704 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/manifest.json
+[0m20:18:29.039120 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/semantic_manifest.json
+[0m20:18:29.055310 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'd2a5472d-21d9-4fd9-977b-acbd6aa2a5c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x138792960>]}
+[0m20:18:29.055566 [info ] [MainThread]: Found 2 seeds, 7 models, 18 data tests, 2 sources, 609 macros
+[0m20:18:29.055722 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'd2a5472d-21d9-4fd9-977b-acbd6aa2a5c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13819e360>]}
+[0m20:18:29.056607 [info ] [MainThread]: 
+[0m20:18:29.056775 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m20:18:29.056906 [info ] [MainThread]: 
+[0m20:18:29.057116 [debug] [MainThread]: Acquiring new clickzetta connection 'master'
+[0m20:18:29.059297 [debug] [ThreadPool]: Acquiring new clickzetta connection 'list_quick_start_retail_raw'
+[0m20:18:29.063376 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:18:29.063594 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+
+    show schemas in quick_start
+  
+[0m20:18:29.063727 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:18:29.418628 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.418954 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.355 seconds
+[0m20:18:29.419116 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:18:29.419249 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.432571 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:18:29.432823 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+show tables in quick_start.retail_raw
+  
+[0m20:18:29.576125 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.576419 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.143 seconds
+[0m20:18:29.576562 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show tables in quick_start.retail_raw
+  
+[0m20:18:29.576688 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.581755 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail_raw"
+[0m20:18:29.581949 [debug] [ThreadPool]: On list_quick_start_retail_raw: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail_raw"} */
+show streams in quick_start.retail_raw
+[0m20:18:29.635538 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.635776 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.054 seconds
+[0m20:18:29.635904 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show streams in quick_start.retail_raw
+[0m20:18:29.636024 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.636549 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_quick_start_retail_raw, now list_quick_start_retail)
+[0m20:18:29.638236 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail"
+[0m20:18:29.638431 [debug] [ThreadPool]: On list_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail"} */
+
+    show schemas in quick_start
+  
+[0m20:18:29.781911 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.782203 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.144 seconds
+[0m20:18:29.782344 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: 
+    show schemas in quick_start
+  
+[0m20:18:29.782466 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.783843 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail"
+[0m20:18:29.784007 [debug] [ThreadPool]: On list_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail"} */
+show tables in quick_start.retail
+  
+[0m20:18:29.882786 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.883059 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.099 seconds
+[0m20:18:29.883209 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show tables in quick_start.retail
+  
+[0m20:18:29.883337 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.884079 [debug] [ThreadPool]: Using clickzetta connection "list_quick_start_retail"
+[0m20:18:29.884240 [debug] [ThreadPool]: On list_quick_start_retail: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "connection_name": "list_quick_start_retail"} */
+show streams in quick_start.retail
+[0m20:18:29.940788 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.941076 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.057 seconds
+[0m20:18:29.941220 [debug] [ThreadPool]: ClickZetta adapter: dbt_execute_sql: show streams in quick_start.retail
+[0m20:18:29.941345 [debug] [ThreadPool]: ClickZetta adapter: code: 0
+[0m20:18:29.942207 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'd2a5472d-21d9-4fd9-977b-acbd6aa2a5c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1385c7b30>]}
+[0m20:18:29.947798 [debug] [Thread-1 (]: Began running node test.retail.not_null_dim_customer_customer_id.9775012dfc
+[0m20:18:29.948025 [info ] [Thread-1 (]: 1 of 18 START test not_null_dim_customer_customer_id ........................... [RUN]
+[0m20:18:29.948233 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_quick_start_retail, now test.retail.not_null_dim_customer_customer_id.9775012dfc)
+[0m20:18:29.948384 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_dim_customer_customer_id.9775012dfc
+[0m20:18:29.953221 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_dim_customer_customer_id.9775012dfc"
+[0m20:18:29.953765 [debug] [Thread-1 (]: Began executing node test.retail.not_null_dim_customer_customer_id.9775012dfc
+[0m20:18:29.960189 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_dim_customer_customer_id.9775012dfc"
+[0m20:18:29.960772 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_dim_customer_customer_id.9775012dfc"
+[0m20:18:29.960936 [debug] [Thread-1 (]: On test.retail.not_null_dim_customer_customer_id.9775012dfc: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_dim_customer_customer_id.9775012dfc"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select customer_id
+from quick_start.retail.dim_customer
+where customer_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:37.555484 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:37.555891 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 7.595 seconds
+[0m20:18:37.556115 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select customer_id
+from quick_start.retail.dim_customer
+where customer_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:37.556276 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:37.560411 [info ] [Thread-1 (]: 1 of 18 PASS not_null_dim_customer_customer_id ................................. [[32mPASS[0m in 7.61s]
+[0m20:18:37.560691 [debug] [Thread-1 (]: Finished running node test.retail.not_null_dim_customer_customer_id.9775012dfc
+[0m20:18:37.560859 [debug] [Thread-1 (]: Began running node test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d
+[0m20:18:37.561068 [info ] [Thread-1 (]: 2 of 18 START test not_null_dim_datetime_datetime_id ........................... [RUN]
+[0m20:18:37.561318 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_dim_customer_customer_id.9775012dfc, now test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d)
+[0m20:18:37.561492 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d
+[0m20:18:37.563358 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d"
+[0m20:18:37.563811 [debug] [Thread-1 (]: Began executing node test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d
+[0m20:18:37.564794 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d"
+[0m20:18:37.565177 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d"
+[0m20:18:37.565378 [debug] [Thread-1 (]: On test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select datetime_id
+from quick_start.retail.dim_datetime
+where datetime_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:38.041391 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:38.041710 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.476 seconds
+[0m20:18:38.041888 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select datetime_id
+from quick_start.retail.dim_datetime
+where datetime_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:38.042034 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:38.042899 [info ] [Thread-1 (]: 2 of 18 PASS not_null_dim_datetime_datetime_id ................................. [[32mPASS[0m in 0.48s]
+[0m20:18:38.043175 [debug] [Thread-1 (]: Finished running node test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d
+[0m20:18:38.043352 [debug] [Thread-1 (]: Began running node test.retail.not_null_dim_product_product_id.02b1f06816
+[0m20:18:38.043548 [info ] [Thread-1 (]: 3 of 18 START test not_null_dim_product_product_id ............................. [RUN]
+[0m20:18:38.043794 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_dim_datetime_datetime_id.d0f57ddc2d, now test.retail.not_null_dim_product_product_id.02b1f06816)
+[0m20:18:38.043952 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_dim_product_product_id.02b1f06816
+[0m20:18:38.045789 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_dim_product_product_id.02b1f06816"
+[0m20:18:38.046212 [debug] [Thread-1 (]: Began executing node test.retail.not_null_dim_product_product_id.02b1f06816
+[0m20:18:38.047172 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_dim_product_product_id.02b1f06816"
+[0m20:18:38.047528 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_dim_product_product_id.02b1f06816"
+[0m20:18:38.047682 [debug] [Thread-1 (]: On test.retail.not_null_dim_product_product_id.02b1f06816: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_dim_product_product_id.02b1f06816"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select product_id
+from quick_start.retail.dim_product
+where product_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:38.407808 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:38.408109 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.360 seconds
+[0m20:18:38.408266 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select product_id
+from quick_start.retail.dim_product
+where product_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:38.408414 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:38.409973 [info ] [Thread-1 (]: 3 of 18 PASS not_null_dim_product_product_id ................................... [[32mPASS[0m in 0.37s]
+[0m20:18:38.410265 [debug] [Thread-1 (]: Finished running node test.retail.not_null_dim_product_product_id.02b1f06816
+[0m20:18:38.410426 [debug] [Thread-1 (]: Began running node test.retail.not_null_fct_invoices_customer_id.d8e4b1239b
+[0m20:18:38.410613 [info ] [Thread-1 (]: 4 of 18 START test not_null_fct_invoices_customer_id ........................... [RUN]
+[0m20:18:38.410847 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_dim_product_product_id.02b1f06816, now test.retail.not_null_fct_invoices_customer_id.d8e4b1239b)
+[0m20:18:38.411010 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_fct_invoices_customer_id.d8e4b1239b
+[0m20:18:38.442396 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_fct_invoices_customer_id.d8e4b1239b"
+[0m20:18:38.442970 [debug] [Thread-1 (]: Began executing node test.retail.not_null_fct_invoices_customer_id.d8e4b1239b
+[0m20:18:38.443975 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_fct_invoices_customer_id.d8e4b1239b"
+[0m20:18:38.444355 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_fct_invoices_customer_id.d8e4b1239b"
+[0m20:18:38.444510 [debug] [Thread-1 (]: On test.retail.not_null_fct_invoices_customer_id.d8e4b1239b: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_fct_invoices_customer_id.d8e4b1239b"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select customer_id
+from quick_start.retail.fct_invoices
+where customer_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:38.792445 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:38.792735 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.348 seconds
+[0m20:18:38.792896 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select customer_id
+from quick_start.retail.fct_invoices
+where customer_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:38.793040 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:38.793833 [info ] [Thread-1 (]: 4 of 18 PASS not_null_fct_invoices_customer_id ................................. [[32mPASS[0m in 0.38s]
+[0m20:18:38.794074 [debug] [Thread-1 (]: Finished running node test.retail.not_null_fct_invoices_customer_id.d8e4b1239b
+[0m20:18:38.794238 [debug] [Thread-1 (]: Began running node test.retail.not_null_fct_invoices_datetime_id.e2e0365054
+[0m20:18:38.794426 [info ] [Thread-1 (]: 5 of 18 START test not_null_fct_invoices_datetime_id ........................... [RUN]
+[0m20:18:38.794659 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_fct_invoices_customer_id.d8e4b1239b, now test.retail.not_null_fct_invoices_datetime_id.e2e0365054)
+[0m20:18:38.794820 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_fct_invoices_datetime_id.e2e0365054
+[0m20:18:38.796601 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_fct_invoices_datetime_id.e2e0365054"
+[0m20:18:38.797103 [debug] [Thread-1 (]: Began executing node test.retail.not_null_fct_invoices_datetime_id.e2e0365054
+[0m20:18:38.798120 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_fct_invoices_datetime_id.e2e0365054"
+[0m20:18:38.798473 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_fct_invoices_datetime_id.e2e0365054"
+[0m20:18:38.798634 [debug] [Thread-1 (]: On test.retail.not_null_fct_invoices_datetime_id.e2e0365054: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_fct_invoices_datetime_id.e2e0365054"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select datetime_id
+from quick_start.retail.fct_invoices
+where datetime_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:39.931792 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:39.932144 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 1.133 seconds
+[0m20:18:39.932323 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select datetime_id
+from quick_start.retail.fct_invoices
+where datetime_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:39.932481 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:39.933433 [info ] [Thread-1 (]: 5 of 18 PASS not_null_fct_invoices_datetime_id ................................. [[32mPASS[0m in 1.14s]
+[0m20:18:39.933695 [debug] [Thread-1 (]: Finished running node test.retail.not_null_fct_invoices_datetime_id.e2e0365054
+[0m20:18:39.933872 [debug] [Thread-1 (]: Began running node test.retail.not_null_fct_invoices_invoice_id.52a055ef3f
+[0m20:18:39.934092 [info ] [Thread-1 (]: 6 of 18 START test not_null_fct_invoices_invoice_id ............................ [RUN]
+[0m20:18:39.934349 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_fct_invoices_datetime_id.e2e0365054, now test.retail.not_null_fct_invoices_invoice_id.52a055ef3f)
+[0m20:18:39.934520 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_fct_invoices_invoice_id.52a055ef3f
+[0m20:18:39.936512 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_fct_invoices_invoice_id.52a055ef3f"
+[0m20:18:39.936955 [debug] [Thread-1 (]: Began executing node test.retail.not_null_fct_invoices_invoice_id.52a055ef3f
+[0m20:18:39.937977 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_fct_invoices_invoice_id.52a055ef3f"
+[0m20:18:39.938321 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_fct_invoices_invoice_id.52a055ef3f"
+[0m20:18:39.938481 [debug] [Thread-1 (]: On test.retail.not_null_fct_invoices_invoice_id.52a055ef3f: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_fct_invoices_invoice_id.52a055ef3f"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select invoice_id
+from quick_start.retail.fct_invoices
+where invoice_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:40.498849 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:40.499158 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.561 seconds
+[0m20:18:40.499323 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select invoice_id
+from quick_start.retail.fct_invoices
+where invoice_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:40.499473 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:40.500282 [info ] [Thread-1 (]: 6 of 18 PASS not_null_fct_invoices_invoice_id .................................. [[32mPASS[0m in 0.57s]
+[0m20:18:40.500534 [debug] [Thread-1 (]: Finished running node test.retail.not_null_fct_invoices_invoice_id.52a055ef3f
+[0m20:18:40.500708 [debug] [Thread-1 (]: Began running node test.retail.not_null_fct_invoices_product_id.313b3fbd65
+[0m20:18:40.500909 [info ] [Thread-1 (]: 7 of 18 START test not_null_fct_invoices_product_id ............................ [RUN]
+[0m20:18:40.501164 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_fct_invoices_invoice_id.52a055ef3f, now test.retail.not_null_fct_invoices_product_id.313b3fbd65)
+[0m20:18:40.501333 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_fct_invoices_product_id.313b3fbd65
+[0m20:18:40.503184 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_fct_invoices_product_id.313b3fbd65"
+[0m20:18:40.503686 [debug] [Thread-1 (]: Began executing node test.retail.not_null_fct_invoices_product_id.313b3fbd65
+[0m20:18:40.504762 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_fct_invoices_product_id.313b3fbd65"
+[0m20:18:40.505132 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_fct_invoices_product_id.313b3fbd65"
+[0m20:18:40.505298 [debug] [Thread-1 (]: On test.retail.not_null_fct_invoices_product_id.313b3fbd65: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_fct_invoices_product_id.313b3fbd65"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select product_id
+from quick_start.retail.fct_invoices
+where product_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:40.909065 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:40.909365 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.404 seconds
+[0m20:18:40.909528 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select product_id
+from quick_start.retail.fct_invoices
+where product_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:40.909671 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:40.910488 [info ] [Thread-1 (]: 7 of 18 PASS not_null_fct_invoices_product_id .................................. [[32mPASS[0m in 0.41s]
+[0m20:18:40.910732 [debug] [Thread-1 (]: Finished running node test.retail.not_null_fct_invoices_product_id.313b3fbd65
+[0m20:18:40.910897 [debug] [Thread-1 (]: Began running node test.retail.not_null_report_customer_invoices_country.b67037085c
+[0m20:18:40.911092 [info ] [Thread-1 (]: 8 of 18 START test not_null_report_customer_invoices_country ................... [RUN]
+[0m20:18:40.911331 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_fct_invoices_product_id.313b3fbd65, now test.retail.not_null_report_customer_invoices_country.b67037085c)
+[0m20:18:40.911494 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_report_customer_invoices_country.b67037085c
+[0m20:18:40.913276 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_report_customer_invoices_country.b67037085c"
+[0m20:18:40.913765 [debug] [Thread-1 (]: Began executing node test.retail.not_null_report_customer_invoices_country.b67037085c
+[0m20:18:40.915580 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_report_customer_invoices_country.b67037085c"
+[0m20:18:40.915952 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_report_customer_invoices_country.b67037085c"
+[0m20:18:40.916109 [debug] [Thread-1 (]: On test.retail.not_null_report_customer_invoices_country.b67037085c: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_report_customer_invoices_country.b67037085c"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select country
+from quick_start.retail.report_customer_invoices
+where country is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:41.317985 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:41.318275 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.402 seconds
+[0m20:18:41.318432 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select country
+from quick_start.retail.report_customer_invoices
+where country is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:41.318572 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:41.319374 [info ] [Thread-1 (]: 8 of 18 PASS not_null_report_customer_invoices_country ......................... [[32mPASS[0m in 0.41s]
+[0m20:18:41.319615 [debug] [Thread-1 (]: Finished running node test.retail.not_null_report_customer_invoices_country.b67037085c
+[0m20:18:41.319780 [debug] [Thread-1 (]: Began running node test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38
+[0m20:18:41.319960 [info ] [Thread-1 (]: 9 of 18 START test not_null_report_customer_invoices_total_revenue ............. [RUN]
+[0m20:18:41.320140 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_report_customer_invoices_country.b67037085c, now test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38)
+[0m20:18:41.320290 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38
+[0m20:18:41.322093 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38"
+[0m20:18:41.322562 [debug] [Thread-1 (]: Began executing node test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38
+[0m20:18:41.323531 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38"
+[0m20:18:41.323928 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38"
+[0m20:18:41.324130 [debug] [Thread-1 (]: On test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select total_revenue
+from quick_start.retail.report_customer_invoices
+where total_revenue is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:41.634889 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:41.635190 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.311 seconds
+[0m20:18:41.635356 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select total_revenue
+from quick_start.retail.report_customer_invoices
+where total_revenue is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:41.635504 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:41.636310 [info ] [Thread-1 (]: 9 of 18 PASS not_null_report_customer_invoices_total_revenue ................... [[32mPASS[0m in 0.32s]
+[0m20:18:41.636554 [debug] [Thread-1 (]: Finished running node test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38
+[0m20:18:41.636723 [debug] [Thread-1 (]: Began running node test.retail.not_null_report_product_invoices_stock_code.f6f96df49b
+[0m20:18:41.636922 [info ] [Thread-1 (]: 10 of 18 START test not_null_report_product_invoices_stock_code ................ [RUN]
+[0m20:18:41.637173 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_report_customer_invoices_total_revenue.8eb986fc38, now test.retail.not_null_report_product_invoices_stock_code.f6f96df49b)
+[0m20:18:41.637344 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_report_product_invoices_stock_code.f6f96df49b
+[0m20:18:41.639155 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_report_product_invoices_stock_code.f6f96df49b"
+[0m20:18:41.639636 [debug] [Thread-1 (]: Began executing node test.retail.not_null_report_product_invoices_stock_code.f6f96df49b
+[0m20:18:41.640643 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_report_product_invoices_stock_code.f6f96df49b"
+[0m20:18:41.641006 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_report_product_invoices_stock_code.f6f96df49b"
+[0m20:18:41.641169 [debug] [Thread-1 (]: On test.retail.not_null_report_product_invoices_stock_code.f6f96df49b: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_report_product_invoices_stock_code.f6f96df49b"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select stock_code
+from quick_start.retail.report_product_invoices
+where stock_code is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:42.036667 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:42.036966 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.396 seconds
+[0m20:18:42.037129 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select stock_code
+from quick_start.retail.report_product_invoices
+where stock_code is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:42.037277 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:42.038093 [info ] [Thread-1 (]: 10 of 18 PASS not_null_report_product_invoices_stock_code ...................... [[32mPASS[0m in 0.40s]
+[0m20:18:42.038343 [debug] [Thread-1 (]: Finished running node test.retail.not_null_report_product_invoices_stock_code.f6f96df49b
+[0m20:18:42.038516 [debug] [Thread-1 (]: Began running node test.retail.not_null_report_year_invoices_month.510db73866
+[0m20:18:42.038709 [info ] [Thread-1 (]: 11 of 18 START test not_null_report_year_invoices_month ........................ [RUN]
+[0m20:18:42.038953 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_report_product_invoices_stock_code.f6f96df49b, now test.retail.not_null_report_year_invoices_month.510db73866)
+[0m20:18:42.039119 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_report_year_invoices_month.510db73866
+[0m20:18:42.040894 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_report_year_invoices_month.510db73866"
+[0m20:18:42.041346 [debug] [Thread-1 (]: Began executing node test.retail.not_null_report_year_invoices_month.510db73866
+[0m20:18:42.042316 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_report_year_invoices_month.510db73866"
+[0m20:18:42.042742 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_report_year_invoices_month.510db73866"
+[0m20:18:42.042969 [debug] [Thread-1 (]: On test.retail.not_null_report_year_invoices_month.510db73866: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_report_year_invoices_month.510db73866"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select month
+from quick_start.retail.report_year_invoices
+where month is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:42.344886 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:42.345175 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.302 seconds
+[0m20:18:42.345332 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select month
+from quick_start.retail.report_year_invoices
+where month is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:42.345470 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:42.346350 [info ] [Thread-1 (]: 11 of 18 PASS not_null_report_year_invoices_month .............................. [[32mPASS[0m in 0.31s]
+[0m20:18:42.346594 [debug] [Thread-1 (]: Finished running node test.retail.not_null_report_year_invoices_month.510db73866
+[0m20:18:42.346765 [debug] [Thread-1 (]: Began running node test.retail.not_null_report_year_invoices_year.710fb81a15
+[0m20:18:42.346959 [info ] [Thread-1 (]: 12 of 18 START test not_null_report_year_invoices_year ......................... [RUN]
+[0m20:18:42.347210 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_report_year_invoices_month.510db73866, now test.retail.not_null_report_year_invoices_year.710fb81a15)
+[0m20:18:42.347383 [debug] [Thread-1 (]: Began compiling node test.retail.not_null_report_year_invoices_year.710fb81a15
+[0m20:18:42.349224 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.not_null_report_year_invoices_year.710fb81a15"
+[0m20:18:42.349737 [debug] [Thread-1 (]: Began executing node test.retail.not_null_report_year_invoices_year.710fb81a15
+[0m20:18:42.350777 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.not_null_report_year_invoices_year.710fb81a15"
+[0m20:18:42.351157 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.not_null_report_year_invoices_year.710fb81a15"
+[0m20:18:42.351320 [debug] [Thread-1 (]: On test.retail.not_null_report_year_invoices_year.710fb81a15: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.not_null_report_year_invoices_year.710fb81a15"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select year
+from quick_start.retail.report_year_invoices
+where year is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:42.752334 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:42.752660 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.401 seconds
+[0m20:18:42.752825 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select year
+from quick_start.retail.report_year_invoices
+where year is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:42.752968 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:42.753798 [info ] [Thread-1 (]: 12 of 18 PASS not_null_report_year_invoices_year ............................... [[32mPASS[0m in 0.41s]
+[0m20:18:42.754044 [debug] [Thread-1 (]: Finished running node test.retail.not_null_report_year_invoices_year.710fb81a15
+[0m20:18:42.754209 [debug] [Thread-1 (]: Began running node test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0
+[0m20:18:42.754403 [info ] [Thread-1 (]: 13 of 18 START test relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_  [RUN]
+[0m20:18:42.754645 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.not_null_report_year_invoices_year.710fb81a15, now test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0)
+[0m20:18:42.754808 [debug] [Thread-1 (]: Began compiling node test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0
+[0m20:18:42.757744 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0"
+[0m20:18:42.758210 [debug] [Thread-1 (]: Began executing node test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0
+[0m20:18:42.759174 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0"
+[0m20:18:42.759526 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0"
+[0m20:18:42.759686 [debug] [Thread-1 (]: On test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with child as (
+    select customer_id as from_field
+    from quick_start.retail.fct_invoices
+    where customer_id is not null
+),
+
+parent as (
+    select customer_id as to_field
+    from quick_start.retail.dim_customer
+)
+
+select
+    from_field
+
+from child
+left join parent
+    on child.from_field = parent.to_field
+
+where parent.to_field is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:43.263929 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:43.264232 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.504 seconds
+[0m20:18:43.264405 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with child as (
+    select customer_id as from_field
+    from quick_start.retail.fct_invoices
+    where customer_id is not null
+),
+
+parent as (
+    select customer_id as to_field
+    from quick_start.retail.dim_customer
+)
+
+select
+    from_field
+
+from child
+left join parent
+    on child.from_field = parent.to_field
+
+where parent.to_field is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:43.264556 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:43.265374 [info ] [Thread-1 (]: 13 of 18 PASS relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_  [[32mPASS[0m in 0.51s]
+[0m20:18:43.265624 [debug] [Thread-1 (]: Finished running node test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0
+[0m20:18:43.265791 [debug] [Thread-1 (]: Began running node test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af
+[0m20:18:43.265983 [info ] [Thread-1 (]: 14 of 18 START test relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_  [RUN]
+[0m20:18:43.266223 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.relationships_fct_invoices_customer_id__customer_id__ref_dim_customer_.6961dc6cb0, now test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af)
+[0m20:18:43.266394 [debug] [Thread-1 (]: Began compiling node test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af
+[0m20:18:43.268552 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af"
+[0m20:18:43.269041 [debug] [Thread-1 (]: Began executing node test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af
+[0m20:18:43.270166 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af"
+[0m20:18:43.270576 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af"
+[0m20:18:43.270827 [debug] [Thread-1 (]: On test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with child as (
+    select datetime_id as from_field
+    from quick_start.retail.fct_invoices
+    where datetime_id is not null
+),
+
+parent as (
+    select datetime_id as to_field
+    from quick_start.retail.dim_datetime
+)
+
+select
+    from_field
+
+from child
+left join parent
+    on child.from_field = parent.to_field
+
+where parent.to_field is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:43.571283 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:43.571587 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.301 seconds
+[0m20:18:43.571761 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with child as (
+    select datetime_id as from_field
+    from quick_start.retail.fct_invoices
+    where datetime_id is not null
+),
+
+parent as (
+    select datetime_id as to_field
+    from quick_start.retail.dim_datetime
+)
+
+select
+    from_field
+
+from child
+left join parent
+    on child.from_field = parent.to_field
+
+where parent.to_field is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:43.571919 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:43.572731 [info ] [Thread-1 (]: 14 of 18 PASS relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_  [[32mPASS[0m in 0.31s]
+[0m20:18:43.572972 [debug] [Thread-1 (]: Finished running node test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af
+[0m20:18:43.573138 [debug] [Thread-1 (]: Began running node test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af
+[0m20:18:43.573329 [info ] [Thread-1 (]: 15 of 18 START test relationships_fct_invoices_product_id__product_id__ref_dim_product_  [RUN]
+[0m20:18:43.573566 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.relationships_fct_invoices_datetime_id__datetime_id__ref_dim_datetime_.409e9f86af, now test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af)
+[0m20:18:43.573735 [debug] [Thread-1 (]: Began compiling node test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af
+[0m20:18:43.575843 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af"
+[0m20:18:43.576300 [debug] [Thread-1 (]: Began executing node test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af
+[0m20:18:43.577228 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af"
+[0m20:18:43.577614 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af"
+[0m20:18:43.577808 [debug] [Thread-1 (]: On test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with child as (
+    select product_id as from_field
+    from quick_start.retail.fct_invoices
+    where product_id is not null
+),
+
+parent as (
+    select product_id as to_field
+    from quick_start.retail.dim_product
+)
+
+select
+    from_field
+
+from child
+left join parent
+    on child.from_field = parent.to_field
+
+where parent.to_field is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:43.855154 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:43.855457 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.277 seconds
+[0m20:18:43.855624 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with child as (
+    select product_id as from_field
+    from quick_start.retail.fct_invoices
+    where product_id is not null
+),
+
+parent as (
+    select product_id as to_field
+    from quick_start.retail.dim_product
+)
+
+select
+    from_field
+
+from child
+left join parent
+    on child.from_field = parent.to_field
+
+where parent.to_field is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:43.855776 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:43.856585 [info ] [Thread-1 (]: 15 of 18 PASS relationships_fct_invoices_product_id__product_id__ref_dim_product_  [[32mPASS[0m in 0.28s]
+[0m20:18:43.856823 [debug] [Thread-1 (]: Finished running node test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af
+[0m20:18:43.856987 [debug] [Thread-1 (]: Began running node test.retail.unique_dim_customer_customer_id.b42affccd1
+[0m20:18:43.857169 [info ] [Thread-1 (]: 16 of 18 START test unique_dim_customer_customer_id ............................ [RUN]
+[0m20:18:43.857401 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.relationships_fct_invoices_product_id__product_id__ref_dim_product_.9c070b48af, now test.retail.unique_dim_customer_customer_id.b42affccd1)
+[0m20:18:43.857558 [debug] [Thread-1 (]: Began compiling node test.retail.unique_dim_customer_customer_id.b42affccd1
+[0m20:18:43.860209 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.unique_dim_customer_customer_id.b42affccd1"
+[0m20:18:43.860652 [debug] [Thread-1 (]: Began executing node test.retail.unique_dim_customer_customer_id.b42affccd1
+[0m20:18:43.861613 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.unique_dim_customer_customer_id.b42affccd1"
+[0m20:18:43.861948 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.unique_dim_customer_customer_id.b42affccd1"
+[0m20:18:43.862098 [debug] [Thread-1 (]: On test.retail.unique_dim_customer_customer_id.b42affccd1: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.unique_dim_customer_customer_id.b42affccd1"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    customer_id as unique_field,
+    count(*) as n_records
+
+from quick_start.retail.dim_customer
+where customer_id is not null
+group by customer_id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:44.185408 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:44.185716 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.323 seconds
+[0m20:18:44.185881 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    customer_id as unique_field,
+    count(*) as n_records
+
+from quick_start.retail.dim_customer
+where customer_id is not null
+group by customer_id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:44.186024 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:44.186836 [info ] [Thread-1 (]: 16 of 18 PASS unique_dim_customer_customer_id .................................. [[32mPASS[0m in 0.33s]
+[0m20:18:44.187077 [debug] [Thread-1 (]: Finished running node test.retail.unique_dim_customer_customer_id.b42affccd1
+[0m20:18:44.187241 [debug] [Thread-1 (]: Began running node test.retail.unique_dim_datetime_datetime_id.5f02751247
+[0m20:18:44.187439 [info ] [Thread-1 (]: 17 of 18 START test unique_dim_datetime_datetime_id ............................ [RUN]
+[0m20:18:44.187665 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.unique_dim_customer_customer_id.b42affccd1, now test.retail.unique_dim_datetime_datetime_id.5f02751247)
+[0m20:18:44.187825 [debug] [Thread-1 (]: Began compiling node test.retail.unique_dim_datetime_datetime_id.5f02751247
+[0m20:18:44.189572 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.unique_dim_datetime_datetime_id.5f02751247"
+[0m20:18:44.190034 [debug] [Thread-1 (]: Began executing node test.retail.unique_dim_datetime_datetime_id.5f02751247
+[0m20:18:44.191771 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.unique_dim_datetime_datetime_id.5f02751247"
+[0m20:18:44.192145 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.unique_dim_datetime_datetime_id.5f02751247"
+[0m20:18:44.192300 [debug] [Thread-1 (]: On test.retail.unique_dim_datetime_datetime_id.5f02751247: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.unique_dim_datetime_datetime_id.5f02751247"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    datetime_id as unique_field,
+    count(*) as n_records
+
+from quick_start.retail.dim_datetime
+where datetime_id is not null
+group by datetime_id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:44.697518 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:44.697808 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.505 seconds
+[0m20:18:44.697972 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    datetime_id as unique_field,
+    count(*) as n_records
+
+from quick_start.retail.dim_datetime
+where datetime_id is not null
+group by datetime_id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:44.698117 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:44.698919 [info ] [Thread-1 (]: 17 of 18 PASS unique_dim_datetime_datetime_id .................................. [[32mPASS[0m in 0.51s]
+[0m20:18:44.699168 [debug] [Thread-1 (]: Finished running node test.retail.unique_dim_datetime_datetime_id.5f02751247
+[0m20:18:44.699334 [debug] [Thread-1 (]: Began running node test.retail.unique_dim_product_product_id.46495bf7fe
+[0m20:18:44.699533 [info ] [Thread-1 (]: 18 of 18 START test unique_dim_product_product_id .............................. [RUN]
+[0m20:18:44.699783 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retail.unique_dim_datetime_datetime_id.5f02751247, now test.retail.unique_dim_product_product_id.46495bf7fe)
+[0m20:18:44.699954 [debug] [Thread-1 (]: Began compiling node test.retail.unique_dim_product_product_id.46495bf7fe
+[0m20:18:44.701734 [debug] [Thread-1 (]: Writing injected SQL for node "test.retail.unique_dim_product_product_id.46495bf7fe"
+[0m20:18:44.702170 [debug] [Thread-1 (]: Began executing node test.retail.unique_dim_product_product_id.46495bf7fe
+[0m20:18:44.703141 [debug] [Thread-1 (]: Writing runtime sql for node "test.retail.unique_dim_product_product_id.46495bf7fe"
+[0m20:18:44.703475 [debug] [Thread-1 (]: Using clickzetta connection "test.retail.unique_dim_product_product_id.46495bf7fe"
+[0m20:18:44.703629 [debug] [Thread-1 (]: On test.retail.unique_dim_product_product_id.46495bf7fe: /* {"app": "dbt", "dbt_version": "1.10.8", "profile_name": "retail", "target_name": "dev", "node_id": "test.retail.unique_dim_product_product_id.46495bf7fe"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    product_id as unique_field,
+    count(*) as n_records
+
+from quick_start.retail.dim_product
+where product_id is not null
+group by product_id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:45.034292 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:45.034596 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.331 seconds
+[0m20:18:45.034760 [debug] [Thread-1 (]: ClickZetta adapter: dbt_execute_sql: 
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    product_id as unique_field,
+    count(*) as n_records
+
+from quick_start.retail.dim_product
+where product_id is not null
+group by product_id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m20:18:45.034907 [debug] [Thread-1 (]: ClickZetta adapter: code: 0
+[0m20:18:45.035788 [info ] [Thread-1 (]: 18 of 18 PASS unique_dim_product_product_id .................................... [[32mPASS[0m in 0.34s]
+[0m20:18:45.036066 [debug] [Thread-1 (]: Finished running node test.retail.unique_dim_product_product_id.46495bf7fe
+[0m20:18:45.036649 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m20:18:45.036828 [debug] [MainThread]: Connection 'test.retail.unique_dim_product_product_id.46495bf7fe' was left open.
+[0m20:18:45.036971 [debug] [MainThread]: On test.retail.unique_dim_product_product_id.46495bf7fe: Close
+[0m20:18:45.037161 [info ] [MainThread]: 
+[0m20:18:45.037360 [info ] [MainThread]: Finished running 18 data tests in 0 hours 0 minutes and 15.98 seconds (15.98s).
+[0m20:18:45.038289 [debug] [MainThread]: Command end result
+[0m20:18:45.049673 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/manifest.json
+[0m20:18:45.050574 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/semantic_manifest.json
+[0m20:18:45.053528 [debug] [MainThread]: Wrote artifact RunExecutionResult to /Users/liangmo/Documents/GitHub/bigquery2lakehouse-retail/03_lakehouse/dbt/target/run_results.json
+[0m20:18:45.053702 [info ] [MainThread]: 
+[0m20:18:45.053860 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m20:18:45.054046 [info ] [MainThread]: 
+[0m20:18:45.054205 [info ] [MainThread]: Done. PASS=18 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=18
+[0m20:18:45.054452 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- MissingArgumentsPropertyInGenericTestDeprecation: 3 occurrences
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m20:18:45.056955 [debug] [MainThread]: Resource report: {"command_name": "test", "command_success": true, "command_wall_clock_time": 17.097052, "process_in_blocks": "0", "process_kernel_time": 4.385485, "process_mem_max_rss": "208388096", "process_out_blocks": "0", "process_user_time": 1.935803}
+[0m20:18:45.057191 [debug] [MainThread]: Command `dbt test` succeeded at 20:18:45.057160 after 17.10 seconds
+[0m20:18:45.057360 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b526660>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x138792990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1386ec830>]}
+[0m20:18:45.057524 [debug] [MainThread]: Flushing usage events
+[0m20:18:46.876809 [debug] [MainThread]: An error was encountered while trying to flush usage events

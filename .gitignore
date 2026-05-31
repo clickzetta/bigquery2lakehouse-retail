@@ -2,6 +2,9 @@
 03_lakehouse/dbt/profiles.yml
 03_lakehouse/dbt/target/
 03_lakehouse/dbt/dbt_packages/
+03_lakehouse/dbt/.venv/
+03_lakehouse/dbt/.user.yml
+03_lakehouse/dbt/logs/
 __pycache__/
 *.pyc
 .DS_Store
