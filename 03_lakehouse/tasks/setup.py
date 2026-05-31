@@ -186,18 +186,15 @@ def setup(profile):
                  "--file", str(refresh_file), "--profile", profile])
         run_cmd(["cz-cli", "task", "save-cron", entry["task"],
                  "--cron", "0 2 * * *", "--profile", profile])
-        # init task (DDL, no cron — run manually)
+        # init task (DDL, no cron — run manually to create or rebuild tables)
         ddl_file = TASKS_DIR / "ddl" / f"{entry['task']}.sql"
         run_cmd(["cz-cli", "task", "save-content", init_name(entry["task"]),
                  "--file", str(ddl_file), "--profile", profile])
-        run_cmd(["cz-cli", "task", "save-cron", init_name(entry["task"]),
-                 "--cron", "0 3 * * *", "--profile", profile])
         print(f"  {entry['task']}: refresh + init content set")
 
-    # Step 6: set dependencies + deploy all
-    print(f"\n[6/6] Setting dependencies and deploying...")
+    # Step 6: set dependencies + deploy refresh tasks; init tasks stay in draft
+    print(f"\n[6/6] Setting dependencies and deploying refresh tasks...")
     for entry in MODEL_DAG:
-        # refresh task deps
         if entry["deps"]:
             dep_list = [{"taskId": task_ids[d], "taskName": d}
                         for d in entry["deps"] if task_ids.get(d)]
@@ -205,10 +202,9 @@ def setup(profile):
                      "--deps", "replace", "--dep-tasks", json.dumps(dep_list),
                      "--profile", profile])
         run_cmd(["cz-cli", "task", "deploy", entry["task"], "--profile", profile])
-        # init task (no deps — run independently)
-        run_cmd(["cz-cli", "task", "deploy", init_name(entry["task"]), "--profile", profile])
+        # init tasks stay in draft — no deploy, no schedule, run manually
         deps_str = f" ← {entry['deps']}" if entry["deps"] else ""
-        print(f"  deployed: {entry['task']}{deps_str} + {init_name(entry['task'])}")
+        print(f"  deployed: {entry['task']}{deps_str}  |  draft: {init_name(entry['task'])}")
 
     print(f"""
 === Setup complete ===
@@ -218,8 +214,8 @@ Generated files (gitignored, workspace-specific):
   tasks/refresh/ — REFRESH DYNAMIC TABLE commands (used by refresh tasks)
 
 Studio folders:
-  {FOLDER}/       — 7 refresh tasks (daily schedule, dependency chain)
-  {FOLDER_INIT}/  — 7 init tasks (CREATE DYNAMIC TABLE, run manually to rebuild)
+  {FOLDER}/       — 7 refresh tasks (daily schedule, dependency chain, deployed)
+  {FOLDER_INIT}/  — 7 init tasks (CREATE DYNAMIC TABLE, draft, run manually to rebuild)
 
 Task DAG ({FOLDER}):
   01_dim_customer  ─┐
