@@ -50,15 +50,20 @@ def main():
     workspace = os.getenv("CLICKZETTA_WORKSPACE")
     username  = os.getenv("CLICKZETTA_USERNAME")
     password  = os.getenv("CLICKZETTA_PASSWORD")
-    vcluster  = os.getenv("CLICKZETTA_VCLUSTER", "default_ap")
+    vcluster  = os.getenv("CLICKZETTA_VCLUSTER", "default")
+    schema    = os.getenv("CLICKZETTA_SCHEMA", "retail")
     profile   = os.getenv("CZ_PROFILE", "retail_dev")
     service   = os.getenv("CLICKZETTA_SERVICE", "cn-shanghai-alicloud.api.clickzetta.com")
 
-    print(f"\n=== bigquery2lakehouse-retail setup ===\n")
+    print(f"
+=== bigquery2lakehouse-retail setup ===
+")
     print(f"Instance:  {instance}")
     print(f"Workspace: {workspace}")
     print(f"VCluster:  {vcluster}")
-    print(f"Profile:   {profile}\n")
+    print(f"Schema:    {schema}")
+    print(f"Profile:   {profile}
+")
 
     # Create cz-cli profile
     print("[1/3] Creating cz-cli profile...")
@@ -66,7 +71,7 @@ def main():
          "--service",   service,
          "--instance",  instance,
          "--workspace", workspace,
-         "--schema",    "retail",
+         "--schema",    schema,
          "--vcluster",  vcluster,
          "--username",  username,
          "--password",  password], check=False)
@@ -93,7 +98,7 @@ def main():
       workspace: {workspace}
       username: {username}
       password: {password}
-      schema: retail
+      schema: {schema}
       vcluster: {vcluster}
 """
     profiles_path.write_text(profiles_content)
