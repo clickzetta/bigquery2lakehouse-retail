@@ -1,17 +1,20 @@
 WITH datetime_cte AS (
     SELECT DISTINCT
-        CAST(InvoiceDate AS varchar) AS datetime_id,
-        DATE_FORMAT(InvoiceDate, 'yyyy-MM-dd HH:mm:ss') AS date_part
+        InvoiceDate AS datetime_id,
+        TO_TIMESTAMP(
+            REGEXP_REPLACE(InvoiceDate, '(\\d+)/(\\d+)/(\\d+) (\\d+):(\\d+)', '20$3-$1-$2 $4:$5'),
+            'yyyy-M-d H:mm'
+        ) AS ts
     FROM {{ source('retail', 'online_retail') }}
     WHERE InvoiceDate IS NOT NULL
 )
 SELECT
     datetime_id,
-    CAST(date_part AS timestamp) AS datetime,
-    SUBSTR(date_part, 9, 2) AS day,
-    SUBSTR(date_part, 6, 2) AS month,
-    SUBSTR(date_part, 1, 4) AS year,
-    SUBSTR(date_part, 12, 2) AS hour,
-    SUBSTR(date_part, 15, 2) AS minute,
-    DAYOFWEEK(CAST(date_part AS timestamp)) AS weekday
+    ts AS datetime,
+    DATE_FORMAT(ts, 'dd') AS day,
+    DATE_FORMAT(ts, 'MM') AS month,
+    DATE_FORMAT(ts, 'yyyy') AS year,
+    DATE_FORMAT(ts, 'HH') AS hour,
+    DATE_FORMAT(ts, 'mm') AS minute,
+    DAYOFWEEK(ts) AS weekday
 FROM datetime_cte

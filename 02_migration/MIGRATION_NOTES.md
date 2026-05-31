@@ -23,13 +23,14 @@
 
 | 文件 | BigQuery 语法 | ClickZetta 语法 | 说明 |
 |------|--------------|----------------|------|
-| `dim_datetime.sql` | `CAST(col AS STRING)` | `CAST(col AS varchar)` | ClickZetta 无 STRING 类型 |
-| `dim_datetime.sql` | `FORMAT_TIMESTAMP('%Y-%m-%d %H:%M:%S', col)` | `DATE_FORMAT(col, 'yyyy-MM-dd HH:mm:ss')` | 格式化函数不同，格式字符串也不同 |
-| `dim_datetime.sql` | `CAST(str AS datetime)` | `CAST(str AS timestamp)` | ClickZetta 无 datetime 类型，用 timestamp |
-| `dim_datetime.sql` | `EXTRACT(DAYOFWEEK FROM TIMESTAMP(col))` | `DAYOFWEEK(CAST(col AS timestamp))` | EXTRACT(DAYOFWEEK) 改为函数调用 |
-| `fct_invoices.sql` | `CAST(InvoiceDate AS STRING)` | `CAST(InvoiceDate AS varchar)` | 同上 |
+| `dim_datetime.sql` | `CAST(InvoiceDate AS STRING)` + `FORMAT_TIMESTAMP(...)` | `InvoiceDate` 保持 varchar，用 `REGEXP_REPLACE` + `TO_TIMESTAMP` 解析 | BigQuery 原生支持 `M/D/YY H:MM` 格式；ClickZetta 不支持两位年份，需手动转换 |
+| `dim_datetime.sql` | `EXTRACT(DAYOFWEEK FROM TIMESTAMP(col))` | `DAYOFWEEK(ts)` | EXTRACT(DAYOFWEEK) 改为函数调用 |
+| `dim_datetime.sql` | `CAST(str AS datetime)` | 直接使用 `TO_TIMESTAMP` 返回的 timestamp | ClickZetta 无 datetime 类型 |
+| `dim_datetime.sql` | `SUBSTR(date_part, N, M)` 提取年月日 | `DATE_FORMAT(ts, 'yyyy'/'MM'/'dd'/'HH'/'mm')` | 直接从 timestamp 格式化，更清晰 |
+| `fct_invoices.sql` | `CAST(InvoiceDate AS STRING)` | 直接使用 varchar 列，无需 CAST | InvoiceDate 在 seed 时已定义为 varchar |
 | `profiles.yml` | `type: bigquery` + `method: service-account` + `keyfile` | `type: clickzetta` + `username` + `password` | 认证方式不同 |
 | `sources.yml` | `database: 'project-id'` | `schema: retail_raw` | BigQuery 用 project+dataset，ClickZetta 用 schema |
+| `dbt_project.yml` seeds | `InvoiceDate: timestamp` | `InvoiceDate: varchar` | BigQuery 原生解析 `M/D/YY H:MM`；ClickZetta 不支持两位年份，先以 varchar 加载再在模型中转换 |
 
 ## 无需修改的部分
 

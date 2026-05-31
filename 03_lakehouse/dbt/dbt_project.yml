@@ -23,7 +23,7 @@ seeds:
         StockCode: varchar
         Description: varchar
         Quantity: int
-        InvoiceDate: timestamp
+        InvoiceDate: varchar
         UnitPrice: double
         CustomerID: varchar
         Country: varchar
