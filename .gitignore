@@ -5,6 +5,8 @@
 03_lakehouse/dbt/.venv/
 03_lakehouse/dbt/.user.yml
 03_lakehouse/dbt/logs/
+03_lakehouse/tasks/ddl/
+03_lakehouse/tasks/refresh/
 __pycache__/
 *.pyc
 .DS_Store

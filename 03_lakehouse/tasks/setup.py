@@ -10,6 +10,10 @@ REFRESH DYNAMIC TABLE for one dbt model. Task dependencies mirror the dbt DAG:
   03_dim_product   ─┘                   ─► 06_report_product_invoices
                                          ─► 07_report_year_invoices
 
+Also generates two local SQL directories (gitignored):
+  tasks/ddl/     — CREATE DYNAMIC TABLE DDL (compiled from dbt, for reference)
+  tasks/refresh/ — REFRESH DYNAMIC TABLE commands (used as Studio Task content)
+
 Why REFRESH DYNAMIC TABLE instead of dbt run:
   The original project used Airflow (schedule=None) + Cosmos to trigger dbt run
   on demand. Here, Studio Tasks replace Airflow+Cosmos as the orchestration layer.
@@ -20,7 +24,6 @@ Why REFRESH DYNAMIC TABLE instead of dbt run:
 Prerequisites:
   - Run 03_lakehouse/setup.py first (creates cz-cli profile + dbt profiles.yml)
   - Run: dbt seed && dbt run --profiles-dir . (in 03_lakehouse/dbt/)
-    to create the dynamic tables before setting up Studio Tasks
 
 Usage:
   python tasks/setup.py                      # reads CZ_PROFILE from .env
@@ -31,7 +34,7 @@ import json
 import sys
 import argparse
 import os
-import tempfile
+import re
 from pathlib import Path
 
 try:
@@ -40,16 +43,18 @@ try:
 except ImportError:
     pass
 
+TASKS_DIR = Path(__file__).parent
+DBT_DIR = TASKS_DIR.parent / "dbt"
 FOLDER = "retail_pipeline"
 
 MODEL_DAG = [
-    {"model": "dim_customer",             "task": "01_dim_customer",             "deps": []},
-    {"model": "dim_datetime",             "task": "02_dim_datetime",             "deps": []},
-    {"model": "dim_product",              "task": "03_dim_product",              "deps": []},
-    {"model": "fct_invoices",             "task": "04_fct_invoices",             "deps": ["01_dim_customer", "02_dim_datetime", "03_dim_product"]},
-    {"model": "report_customer_invoices", "task": "05_report_customer_invoices", "deps": ["04_fct_invoices"]},
-    {"model": "report_product_invoices",  "task": "06_report_product_invoices",  "deps": ["04_fct_invoices"]},
-    {"model": "report_year_invoices",     "task": "07_report_year_invoices",     "deps": ["04_fct_invoices"]},
+    {"model": "dim_customer",             "task": "01_dim_customer",             "subdir": "transform", "deps": []},
+    {"model": "dim_datetime",             "task": "02_dim_datetime",             "subdir": "transform", "deps": []},
+    {"model": "dim_product",              "task": "03_dim_product",              "subdir": "transform", "deps": []},
+    {"model": "fct_invoices",             "task": "04_fct_invoices",             "subdir": "transform", "deps": ["01_dim_customer", "02_dim_datetime", "03_dim_product"]},
+    {"model": "report_customer_invoices", "task": "05_report_customer_invoices", "subdir": "report",    "deps": ["04_fct_invoices"]},
+    {"model": "report_product_invoices",  "task": "06_report_product_invoices",  "subdir": "report",    "deps": ["04_fct_invoices"]},
+    {"model": "report_year_invoices",     "task": "07_report_year_invoices",     "subdir": "report",    "deps": ["04_fct_invoices"]},
 ]
 
 
@@ -59,6 +64,47 @@ def run_cmd(cmd, check=True):
         print(f"  ERROR: {r.stdout.strip()[:200] or r.stderr.strip()[:200]}")
         sys.exit(1)
     return r.returncode, r.stdout.strip()
+
+
+def compile_dbt():
+    print("  Running dbt compile...")
+    r = subprocess.run(["dbt", "compile", "--profiles-dir", "."],
+                       capture_output=True, text=True, cwd=str(DBT_DIR))
+    if r.returncode != 0:
+        print("  ERROR: dbt compile failed. Run setup.py first to create profiles.yml.")
+        sys.exit(1)
+    compiled_dir = DBT_DIR / "target" / "compiled" / "retail" / "models"
+    if not compiled_dir.exists():
+        print(f"  ERROR: compiled directory not found: {compiled_dir}")
+        sys.exit(1)
+    return compiled_dir
+
+
+def generate_sql_files(workspace, compiled_dir):
+    ddl_dir = TASKS_DIR / "ddl"
+    refresh_dir = TASKS_DIR / "refresh"
+    ddl_dir.mkdir(exist_ok=True)
+    refresh_dir.mkdir(exist_ok=True)
+
+    # detect local workspace embedded in compiled SQL
+    sample = (compiled_dir / "transform" / "dim_customer.sql").read_text()
+    m = re.search(r'\b(\w+)\.retail', sample)
+    local_ws = m.group(1) if m else workspace
+
+    for entry in MODEL_DAG:
+        sql_file = compiled_dir / entry["subdir"] / f"{entry['model']}.sql"
+        select_sql = sql_file.read_text().strip().replace(local_ws + ".", workspace + ".")
+        table_ref = f"{workspace}.retail.{entry['model']}"
+
+        (ddl_dir / f"{entry['task']}.sql").write_text(
+            f"CREATE DYNAMIC TABLE {table_ref}\nAS\n{select_sql};"
+        )
+        (refresh_dir / f"{entry['task']}.sql").write_text(
+            f"REFRESH DYNAMIC TABLE {table_ref};"
+        )
+
+    print(f"  ddl/     — {len(MODEL_DAG)} CREATE DYNAMIC TABLE files")
+    print(f"  refresh/ — {len(MODEL_DAG)} REFRESH DYNAMIC TABLE files")
 
 
 def get_workspace(profile):
@@ -90,10 +136,17 @@ def setup(profile):
 
     print(f"\n=== Setup Studio Tasks (profile: {profile}, workspace: {workspace}) ===\n")
 
-    print(f"[1/4] Creating folder '{FOLDER}'...")
+    # Step 1: compile dbt + generate SQL files
+    print("[1/5] Compiling dbt and generating SQL files...")
+    compiled_dir = compile_dbt()
+    generate_sql_files(workspace, compiled_dir)
+
+    # Step 2: create folder
+    print(f"\n[2/5] Creating folder '{FOLDER}'...")
     run_cmd(["cz-cli", "task", "create-folder", FOLDER, "--profile", profile], check=False)
 
-    print(f"\n[2/4] Creating {len(MODEL_DAG)} SQL tasks...")
+    # Step 3: create tasks (idempotent)
+    print(f"\n[3/5] Creating {len(MODEL_DAG)} SQL tasks...")
     task_ids = {}
     for entry in MODEL_DAG:
         name = entry["task"]
@@ -108,21 +161,18 @@ def setup(profile):
             task_ids[name] = tid
             print(f"  created: {name} (id={tid})")
 
-    print(f"\n[3/4] Setting task content (REFRESH DYNAMIC TABLE)...")
+    # Step 4: set REFRESH content from generated refresh/ files
+    print(f"\n[4/5] Setting task content from refresh/ files...")
     for entry in MODEL_DAG:
-        table_ref = f"{workspace}.retail.{entry['model']}"
-        sql = f"REFRESH DYNAMIC TABLE {table_ref};"
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.sql', delete=False) as f:
-            f.write(sql)
-            tmp = f.name
+        refresh_file = TASKS_DIR / "refresh" / f"{entry['task']}.sql"
         run_cmd(["cz-cli", "task", "save-content", entry["task"],
-                 "--file", tmp, "--profile", profile])
+                 "--file", str(refresh_file), "--profile", profile])
         run_cmd(["cz-cli", "task", "save-cron", entry["task"],
                  "--cron", "0 2 * * *", "--profile", profile])
-        os.unlink(tmp)
-        print(f"  {entry['task']}: {sql}")
+        print(f"  {entry['task']}: {refresh_file.read_text().strip()}")
 
-    print(f"\n[4/4] Setting dependencies and deploying...")
+    # Step 5: set dependencies + deploy
+    print(f"\n[5/5] Setting dependencies and deploying...")
     for entry in MODEL_DAG:
         if entry["deps"]:
             dep_list = [{"taskId": task_ids[d], "taskName": d}
@@ -137,13 +187,15 @@ def setup(profile):
     print(f"""
 === Setup complete ===
 
+Generated files (gitignored, workspace-specific):
+  tasks/ddl/     — CREATE DYNAMIC TABLE DDL (run once via dbt, for reference)
+  tasks/refresh/ — REFRESH DYNAMIC TABLE commands (used by Studio Tasks)
+
 Task DAG (folder: {FOLDER}):
   01_dim_customer  ─┐
   02_dim_datetime  ─┼─► 04_fct_invoices ─► 05_report_customer_invoices
   03_dim_product   ─┘                   ─► 06_report_product_invoices
                                          ─► 07_report_year_invoices
-
-Each task runs: REFRESH DYNAMIC TABLE {workspace}.retail.<model>
 
 To trigger a full pipeline refresh:
   cz-cli task execute 01_dim_customer --profile {profile} --max-wait-seconds 60
