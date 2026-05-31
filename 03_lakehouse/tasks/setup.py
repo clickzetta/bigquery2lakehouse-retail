@@ -2,13 +2,20 @@
 """
 Setup Studio Tasks for the retail dbt pipeline.
 
-Creates 5 tasks with dependency chain:
-  retail_seed_raw_data → retail_dbt_run_transform → retail_dbt_test_transform
-                       → retail_dbt_run_report → retail_dbt_test_report
+Creates 7 SQL tasks in the 'retail_pipeline' folder, each corresponding to
+a dbt model. Dependencies mirror the dbt model DAG:
+
+  01_dim_customer  ─┐
+  02_dim_datetime  ─┼─► 04_fct_invoices ─► 05_report_customer_invoices
+  03_dim_product   ─┘                   ─► 06_report_product_invoices
+                                         ─► 07_report_year_invoices
+
+Each task runs: DROP TABLE IF EXISTS + CREATE TABLE AS SELECT
+(ClickZetta does not support CREATE OR REPLACE TABLE ... AS SELECT)
 
 Prerequisites:
-  - Run 03_lakehouse/setup.py first to create the cz-cli profile
-  - Run dbt seed/run/test at least once to verify the dbt project works
+  - Run 03_lakehouse/setup.py first (creates cz-cli profile)
+  - Run dbt seed at least once to load raw data into retail_raw schema
 
 Usage:
   python tasks/setup.py                      # reads CZ_PROFILE from .env
@@ -19,6 +26,8 @@ import json
 import sys
 import argparse
 import os
+import tempfile
+import concurrent.futures
 from pathlib import Path
 
 try:
@@ -27,104 +36,250 @@ try:
 except ImportError:
     pass
 
-DBT_DIR = str(Path(__file__).parent.parent / "dbt")
+FOLDER = "retail_pipeline"
 
-TASKS = [
-    "retail_seed_raw_data",
-    "retail_dbt_run_transform",
-    "retail_dbt_test_transform",
-    "retail_dbt_run_report",
-    "retail_dbt_test_report",
-]
 
-TASK_CONTENTS = {
-    "retail_seed_raw_data":       f"cd {DBT_DIR} && dbt seed --profiles-dir .",
-    "retail_dbt_run_transform":   f"cd {DBT_DIR} && dbt run --select transform --profiles-dir .",
-    "retail_dbt_test_transform":  f"cd {DBT_DIR} && dbt test --select transform --profiles-dir .",
-    "retail_dbt_run_report":      f"cd {DBT_DIR} && dbt run --select report --profiles-dir .",
-    "retail_dbt_test_report":     f"cd {DBT_DIR} && dbt test --select report --profiles-dir .",
-}
+def get_workspace(profile):
+    r = subprocess.run(
+        ["cz-cli", "profile", "show", profile, "--format", "json"],
+        capture_output=True, text=True
+    )
+    try:
+        d = json.loads(r.stdout)
+        return d.get("data", {}).get("workspace") or os.getenv("CLICKZETTA_WORKSPACE", "quick_start")
+    except Exception:
+        return os.getenv("CLICKZETTA_WORKSPACE", "quick_start")
 
-DEPS = {
-    "retail_dbt_run_transform":  "retail_seed_raw_data",
-    "retail_dbt_test_transform": "retail_dbt_run_transform",
-    "retail_dbt_run_report":     "retail_dbt_test_transform",
-    "retail_dbt_test_report":    "retail_dbt_run_report",
-}
+
+def build_tasks(ws):
+    return [
+        {
+            "name": "01_dim_customer",
+            "sql": f"""DROP TABLE IF EXISTS {ws}.retail.dim_customer;
+CREATE TABLE {ws}.retail.dim_customer AS
+WITH customer_cte AS (
+    SELECT DISTINCT
+        md5(cast(concat(
+            coalesce(cast(CustomerID as string), '_dbt_utils_surrogate_key_null_'), '-',
+            coalesce(cast(Country as string), '_dbt_utils_surrogate_key_null_')
+        ) as string)) AS customer_id,
+        Country AS country
+    FROM {ws}.retail_raw.online_retail
+    WHERE CustomerID IS NOT NULL
+)
+SELECT t.*, cm.iso
+FROM customer_cte t
+LEFT JOIN {ws}.retail_raw.country cm ON t.country = cm.nicename""",
+            "deps": [],
+        },
+        {
+            "name": "02_dim_datetime",
+            "sql": f"""DROP TABLE IF EXISTS {ws}.retail.dim_datetime;
+CREATE TABLE {ws}.retail.dim_datetime AS
+WITH datetime_cte AS (
+    SELECT DISTINCT
+        InvoiceDate AS datetime_id,
+        TO_TIMESTAMP(
+            REGEXP_REPLACE(InvoiceDate, '(\\d+)/(\\d+)/(\\d+) (\\d+):(\\d+)', '20$3-$1-$2 $4:$5'),
+            'yyyy-M-d H:mm'
+        ) AS ts
+    FROM {ws}.retail_raw.online_retail
+    WHERE InvoiceDate IS NOT NULL
+)
+SELECT
+    datetime_id, ts AS datetime,
+    DATE_FORMAT(ts, 'dd') AS day,   DATE_FORMAT(ts, 'MM') AS month,
+    DATE_FORMAT(ts, 'yyyy') AS year, DATE_FORMAT(ts, 'HH') AS hour,
+    DATE_FORMAT(ts, 'mm') AS minute, DAYOFWEEK(ts) AS weekday
+FROM datetime_cte""",
+            "deps": [],
+        },
+        {
+            "name": "03_dim_product",
+            "sql": f"""DROP TABLE IF EXISTS {ws}.retail.dim_product;
+CREATE TABLE {ws}.retail.dim_product AS
+SELECT DISTINCT
+    md5(cast(concat(
+        coalesce(cast(StockCode as string), '_dbt_utils_surrogate_key_null_'), '-',
+        coalesce(cast(Description as string), '_dbt_utils_surrogate_key_null_'), '-',
+        coalesce(cast(UnitPrice as string), '_dbt_utils_surrogate_key_null_')
+    ) as string)) AS product_id,
+    StockCode AS stock_code, Description AS description, UnitPrice AS price
+FROM {ws}.retail_raw.online_retail
+WHERE StockCode IS NOT NULL AND Description IS NOT NULL AND UnitPrice > 0""",
+            "deps": [],
+        },
+        {
+            "name": "04_fct_invoices",
+            "sql": f"""DROP TABLE IF EXISTS {ws}.retail.fct_invoices;
+CREATE TABLE {ws}.retail.fct_invoices AS
+WITH fct_invoices_cte AS (
+    SELECT
+        InvoiceNo AS invoice_id,
+        CAST(InvoiceDate AS varchar) AS datetime_id,
+        md5(cast(concat(
+            coalesce(cast(StockCode as string), '_dbt_utils_surrogate_key_null_'), '-',
+            coalesce(cast(Description as string), '_dbt_utils_surrogate_key_null_'), '-',
+            coalesce(cast(UnitPrice as string), '_dbt_utils_surrogate_key_null_')
+        ) as string)) AS product_id,
+        md5(cast(concat(
+            coalesce(cast(CustomerID as string), '_dbt_utils_surrogate_key_null_'), '-',
+            coalesce(cast(Country as string), '_dbt_utils_surrogate_key_null_')
+        ) as string)) AS customer_id,
+        Quantity AS quantity, Quantity * UnitPrice AS total
+    FROM {ws}.retail_raw.online_retail
+    WHERE Quantity > 0
+)
+SELECT fi.invoice_id, dt.datetime_id, dp.product_id, dc.customer_id, fi.quantity, fi.total
+FROM fct_invoices_cte fi
+INNER JOIN {ws}.retail.dim_datetime dt ON fi.datetime_id = dt.datetime_id
+INNER JOIN {ws}.retail.dim_product dp ON fi.product_id = dp.product_id
+INNER JOIN {ws}.retail.dim_customer dc ON fi.customer_id = dc.customer_id""",
+            "deps": ["01_dim_customer", "02_dim_datetime", "03_dim_product"],
+        },
+        {
+            "name": "05_report_customer_invoices",
+            "sql": f"""DROP TABLE IF EXISTS {ws}.retail.report_customer_invoices;
+CREATE TABLE {ws}.retail.report_customer_invoices AS
+SELECT c.country, c.iso,
+    COUNT(fi.invoice_id) AS total_invoices,
+    SUM(fi.total) AS total_revenue
+FROM {ws}.retail.fct_invoices fi
+JOIN {ws}.retail.dim_customer c ON fi.customer_id = c.customer_id
+GROUP BY c.country, c.iso
+ORDER BY total_revenue DESC
+LIMIT 10""",
+            "deps": ["04_fct_invoices"],
+        },
+        {
+            "name": "06_report_product_invoices",
+            "sql": f"""DROP TABLE IF EXISTS {ws}.retail.report_product_invoices;
+CREATE TABLE {ws}.retail.report_product_invoices AS
+SELECT p.product_id, p.stock_code, p.description,
+    SUM(fi.quantity) AS total_quantity_sold
+FROM {ws}.retail.fct_invoices fi
+JOIN {ws}.retail.dim_product p ON fi.product_id = p.product_id
+GROUP BY p.product_id, p.stock_code, p.description
+ORDER BY total_quantity_sold DESC
+LIMIT 10""",
+            "deps": ["04_fct_invoices"],
+        },
+        {
+            "name": "07_report_year_invoices",
+            "sql": f"""DROP TABLE IF EXISTS {ws}.retail.report_year_invoices;
+CREATE TABLE {ws}.retail.report_year_invoices AS
+SELECT dt.year, dt.month,
+    COUNT(DISTINCT fi.invoice_id) AS num_invoices,
+    SUM(fi.total) AS total_revenue
+FROM {ws}.retail.fct_invoices fi
+JOIN {ws}.retail.dim_datetime dt ON fi.datetime_id = dt.datetime_id
+GROUP BY dt.year, dt.month
+ORDER BY dt.year, dt.month""",
+            "deps": ["04_fct_invoices"],
+        },
+    ]
 
 
 def run(cmd, check=True):
-    print(f"  $ {' '.join(cmd)}")
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    if check and result.returncode != 0:
-        print(f"  ERROR: {result.stderr.strip()}")
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if check and r.returncode != 0:
+        print(f"  ERROR: {r.stdout.strip()[:120]}")
         sys.exit(1)
-    return result.stdout.strip()
+    return r.returncode, r.stdout.strip()
 
 
-def get_task_id(task_name, profile):
-    out = run(["cz-cli", "task", "list", "--profile", profile, "--format", "json"], check=False)
+def get_task_id(name, profile):
+    _, out = run(["cz-cli", "task", "list", "--profile", profile, "--format", "json"], check=False)
     try:
         data = json.loads(out)
-        tasks = data.get("data", data) if isinstance(data, dict) else data
+        tasks = data.get("data", [])
         for t in tasks:
-            if t.get("task_name") == task_name or t.get("taskName") == task_name:
-                return t.get("task_id") or t.get("taskId")
+            if t.get("task_name") == name:
+                return t.get("task_id")
     except Exception:
         pass
     return None
 
 
 def setup(profile):
-    print(f"\n=== Creating Studio Tasks (profile: {profile}) ===\n")
+    ws = get_workspace(profile)
+    tasks = build_tasks(ws)
 
-    # Fetch existing task IDs first (idempotent: skip create if already exists)
+    print(f"\n=== Setup Studio Tasks (profile: {profile}, workspace: {ws}) ===\n")
+
+    # Step 1: create folder
+    print(f"[1/4] Creating folder '{FOLDER}'...")
+    run(["cz-cli", "task", "create-folder", FOLDER, "--profile", profile], check=False)
+
+    # Step 2: create tasks (idempotent)
+    print(f"[2/4] Creating {len(tasks)} SQL tasks...")
     task_ids = {}
-    for task_name in TASKS:
-        existing_id = get_task_id(task_name, profile)
-        if existing_id:
-            task_ids[task_name] = existing_id
-            print(f"[1/3] Task already exists: {task_name} (id={existing_id})")
+    for t in tasks:
+        existing = get_task_id(t["name"], profile)
+        if existing:
+            task_ids[t["name"]] = existing
+            print(f"  already exists: {t['name']} (id={existing})")
         else:
-            print(f"[1/3] Creating task: {task_name}")
-            run(["cz-cli", "task", "create", task_name, "--type", "SHELL", "--profile", profile])
-            task_id = get_task_id(task_name, profile)
-            if task_id:
-                task_ids[task_name] = task_id
-                print(f"      task_id: {task_id}")
+            run(["cz-cli", "task", "create", t["name"],
+                 "--type", "SQL", "--folder", FOLDER, "--profile", profile])
+            tid = get_task_id(t["name"], profile)
+            task_ids[t["name"]] = tid
+            print(f"  created: {t['name']} (id={tid})")
 
-    print()
-    for task_name, content in TASK_CONTENTS.items():
-        print(f"[2/3] Setting content: {task_name}")
-        run(["cz-cli", "task", "save-content", task_name,
-             "--content", content, "--profile", profile])
+    # Step 3: set SQL content
+    print(f"\n[3/4] Setting SQL content...")
+    for t in tasks:
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.sql', delete=False) as f:
+            f.write(t["sql"])
+            tmp = f.name
+        run(["cz-cli", "task", "save-content", t["name"],
+             "--file", tmp, "--profile", profile])
+        os.unlink(tmp)
+        # set daily cron so deploy succeeds
+        run(["cz-cli", "task", "save-cron", t["name"],
+             "--cron", "0 2 * * *", "--profile", profile])
+        print(f"  {t['name']}: OK")
 
-    print()
-    for task_name, upstream_name in DEPS.items():
-        upstream_id = task_ids.get(upstream_name)
-        if not upstream_id:
-            print(f"  WARN: could not find task_id for {upstream_name}, skipping dep")
+    # Step 4: set dependencies
+    print(f"\n[4/4] Setting dependencies...")
+    for t in tasks:
+        if not t["deps"]:
             continue
-        print(f"[3/3] Setting dep: {task_name} → {upstream_name} (id={upstream_id})")
-        dep_json = json.dumps([{"taskId": upstream_id, "taskName": upstream_name}])
-        run(["cz-cli", "task", "save-config", task_name,
+        dep_list = [{"taskId": task_ids[d], "taskName": d}
+                    for d in t["deps"] if task_ids.get(d)]
+        dep_json = json.dumps(dep_list)
+        run(["cz-cli", "task", "save-config", t["name"],
              "--deps", "replace", "--dep-tasks", dep_json, "--profile", profile])
+        print(f"  {t['name']} ← {t['deps']}")
 
-    print("\n=== Setup complete ===")
-    print("\nTask dependency chain:")
-    print("  retail_seed_raw_data")
-    print("    → retail_dbt_run_transform")
-    print("      → retail_dbt_test_transform")
-    print("        → retail_dbt_run_report")
-    print("          → retail_dbt_test_report")
-    print("\nTo deploy and run:")
-    for task_name in TASKS:
-        print(f"  cz-cli task deploy {task_name} --profile {profile}")
-    print(f"  cz-cli task execute retail_seed_raw_data --profile {profile}")
+    # Deploy all
+    print(f"\nDeploying tasks...")
+    for t in tasks:
+        run(["cz-cli", "task", "deploy", t["name"], "--profile", profile])
+        print(f"  deployed: {t['name']}")
+
+    print(f"""
+=== Setup complete ===
+
+Task DAG (folder: {FOLDER}):
+  01_dim_customer  ─┐
+  02_dim_datetime  ─┼─► 04_fct_invoices ─► 05_report_customer_invoices
+  03_dim_product   ─┘                   ─► 06_report_product_invoices
+                                         ─► 07_report_year_invoices
+
+To run manually:
+  cz-cli task execute 01_dim_customer --profile {profile} --max-wait-seconds 60
+  cz-cli task execute 02_dim_datetime --profile {profile} --max-wait-seconds 60
+  cz-cli task execute 03_dim_product  --profile {profile} --max-wait-seconds 60
+  cz-cli task execute 04_fct_invoices --profile {profile} --max-wait-seconds 60
+  cz-cli task execute 05_report_customer_invoices --profile {profile} --max-wait-seconds 60
+  cz-cli task execute 06_report_product_invoices  --profile {profile} --max-wait-seconds 60
+  cz-cli task execute 07_report_year_invoices     --profile {profile} --max-wait-seconds 60
+""")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Setup Studio Tasks for retail dbt pipeline")
-    parser.add_argument("--profile", default=os.getenv("CZ_PROFILE", "retail_dev"), help="cz-cli profile name")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--profile", default=os.getenv("CZ_PROFILE", "retail_dev"))
     args = parser.parse_args()
     setup(args.profile)
