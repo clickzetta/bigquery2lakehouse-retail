@@ -50,6 +50,11 @@ FOLDER = "retail_pipeline"
 FOLDER_INIT = "retail_pipeline_init"
 FOLDER_IDS_FILE = Path(__file__).parent / ".folder_ids.json"
 
+# Read schema from env — defaults to "retail" to match dbt project name
+SCHEMA = os.getenv("CLICKZETTA_SCHEMA", "retail")
+# dbt project name is the directory under target/run/
+DBT_PROJECT_NAME = os.getenv("DBT_PROJECT_NAME", "retail")
+
 MODEL_DAG = [
     {"model": "dim_customer",             "task": "01_dim_customer",             "subdir": "transform", "deps": []},
     {"model": "dim_datetime",             "task": "02_dim_datetime",             "subdir": "transform", "deps": []},
@@ -76,7 +81,7 @@ def compile_dbt():
     if r.returncode != 0:
         print("  ERROR: dbt compile failed. Run setup.py first to create profiles.yml.")
         sys.exit(1)
-    run_dir = DBT_DIR / "target" / "run" / "retail" / "models"
+    run_dir = DBT_DIR / "target" / "run" / DBT_PROJECT_NAME / "models"
     if not run_dir.exists():
         print(f"  ERROR: run directory not found: {run_dir}")
         print("  Run: dbt run --profiles-dir . first")
@@ -92,14 +97,14 @@ def generate_sql_files(workspace, run_dir):
 
     # detect local workspace embedded in run SQL
     sample = (run_dir / "transform" / "dim_customer.sql").read_text()
-    m = re.search(r'create dynamic table\s+(\w+)\.retail', sample, re.IGNORECASE)
+    m = re.search(r'create dynamic table\s+(\w+)\.' + re.escape(SCHEMA), sample, re.IGNORECASE)
     local_ws = m.group(1) if m else workspace
 
     for entry in MODEL_DAG:
         sql_file = run_dir / entry["subdir"] / f"{entry['model']}.sql"
         # dbt run SQL is the exact DDL executed — replace local workspace with target
         ddl_sql = sql_file.read_text().strip().replace(local_ws + ".", workspace + ".")
-        table_ref = f"{workspace}.retail.{entry['model']}"
+        table_ref = f"{workspace}.{SCHEMA}.{entry['model']}"
 
         (ddl_dir / f"{entry['task']}.sql").write_text(ddl_sql)
         (refresh_dir / f"{entry['task']}.sql").write_text(

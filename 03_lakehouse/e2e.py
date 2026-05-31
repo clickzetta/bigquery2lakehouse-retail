@@ -61,7 +61,8 @@ def check(name, actual, expected, tolerance=0.01):
 
 def run(profile):
     workspace = os.getenv("CLICKZETTA_WORKSPACE", "quick_start")
-    schema = f"{workspace}.retail"
+    schema_name = os.getenv("CLICKZETTA_SCHEMA", "retail")
+    schema = f"{workspace}.{schema_name}"
     passed = 0
     failed = 0
 
