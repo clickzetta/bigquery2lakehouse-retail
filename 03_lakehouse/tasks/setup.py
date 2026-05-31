@@ -3,16 +3,31 @@
 Setup Studio Tasks for the retail dbt pipeline.
 
 Creates 5 tasks with dependency chain:
-  seed_raw_data → dbt_run_transform → dbt_test_transform → dbt_run_report → dbt_test_report
+  retail_seed_raw_data → retail_dbt_run_transform → retail_dbt_test_transform
+                       → retail_dbt_run_report → retail_dbt_test_report
+
+Prerequisites:
+  - Run 03_lakehouse/setup.py first to create the cz-cli profile
+  - Run dbt seed/run/test at least once to verify the dbt project works
 
 Usage:
-  python setup.py --profile retail_dev
+  python tasks/setup.py                      # reads CZ_PROFILE from .env
+  python tasks/setup.py --profile retail_dev
 """
 import subprocess
 import json
 import sys
 import argparse
+import os
+from pathlib import Path
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).parent.parent.parent / ".env")
+except ImportError:
+    pass
+
+DBT_DIR = str(Path(__file__).parent.parent / "dbt")
 
 TASKS = [
     "retail_seed_raw_data",
@@ -23,19 +38,18 @@ TASKS = [
 ]
 
 TASK_CONTENTS = {
-    "retail_seed_raw_data": "dbt seed --profiles-dir /path/to/03_lakehouse/dbt --profiles-dir .",
-    "retail_dbt_run_transform": "dbt run --select transform --profiles-dir .",
-    "retail_dbt_test_transform": "dbt test --select transform --profiles-dir .",
-    "retail_dbt_run_report": "dbt run --select report --profiles-dir .",
-    "retail_dbt_test_report": "dbt test --select report --profiles-dir .",
+    "retail_seed_raw_data":       f"cd {DBT_DIR} && dbt seed --profiles-dir .",
+    "retail_dbt_run_transform":   f"cd {DBT_DIR} && dbt run --select transform --profiles-dir .",
+    "retail_dbt_test_transform":  f"cd {DBT_DIR} && dbt test --select transform --profiles-dir .",
+    "retail_dbt_run_report":      f"cd {DBT_DIR} && dbt run --select report --profiles-dir .",
+    "retail_dbt_test_report":     f"cd {DBT_DIR} && dbt test --select report --profiles-dir .",
 }
 
-# Dependency chain: each task depends on the previous one
 DEPS = {
-    "retail_dbt_run_transform": "retail_seed_raw_data",
+    "retail_dbt_run_transform":  "retail_seed_raw_data",
     "retail_dbt_test_transform": "retail_dbt_run_transform",
-    "retail_dbt_run_report": "retail_dbt_test_transform",
-    "retail_dbt_test_report": "retail_dbt_run_report",
+    "retail_dbt_run_report":     "retail_dbt_test_transform",
+    "retail_dbt_test_report":    "retail_dbt_run_report",
 }
 
 
@@ -106,6 +120,6 @@ def setup(profile):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Setup Studio Tasks for retail dbt pipeline")
-    parser.add_argument("--profile", default="retail_dev", help="cz-cli profile name")
+    parser.add_argument("--profile", default=os.getenv("CZ_PROFILE", "retail_dev"), help="cz-cli profile name")
     args = parser.parse_args()
     setup(args.profile)

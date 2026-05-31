@@ -1,0 +1,2 @@
+dbt-clickzetta>=1.6.5
+python-dotenv

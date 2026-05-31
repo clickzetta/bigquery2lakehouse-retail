@@ -6,12 +6,22 @@ Runs assertions against the ClickZetta Lakehouse tables built by dbt.
 All EXPECTED values come from actual dbt run output — not guessed.
 
 Usage:
-  python e2e.py --profile aliyun_shanghai_prod
+  python e2e.py                          # reads CZ_PROFILE from .env
+  python e2e.py --profile retail_dev     # explicit profile
 """
 import subprocess
 import json
 import sys
 import argparse
+import os
+from pathlib import Path
+
+# Load .env if present
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).parent.parent / ".env")
+except ImportError:
+    pass
 
 EXPECTED = {
     "dim_customer_count": 425,
@@ -50,7 +60,8 @@ def check(name, actual, expected, tolerance=0.01):
 
 
 def run(profile):
-    schema = "quick_start.retail"
+    workspace = os.getenv("CLICKZETTA_WORKSPACE", "quick_start")
+    schema = f"{workspace}.retail"
     passed = 0
     failed = 0
 
@@ -102,6 +113,6 @@ def run(profile):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--profile", default="aliyun_shanghai_prod")
+    parser.add_argument("--profile", default=os.getenv("CZ_PROFILE", "retail_dev"))
     args = parser.parse_args()
     run(args.profile)
