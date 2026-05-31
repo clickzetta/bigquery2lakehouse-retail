@@ -46,6 +46,7 @@ except ImportError:
 TASKS_DIR = Path(__file__).parent
 DBT_DIR = TASKS_DIR.parent / "dbt"
 FOLDER = "retail_pipeline"
+FOLDER_INIT = "retail_pipeline_init"
 
 MODEL_DAG = [
     {"model": "dim_customer",             "task": "01_dim_customer",             "subdir": "transform", "deps": []},
@@ -117,7 +118,8 @@ def get_workspace(profile):
 
 
 def get_task_id(name, profile):
-    _, out = run_cmd(["cz-cli", "task", "list", "--profile", profile, "--format", "json"], check=False)
+    _, out = run_cmd(["cz-cli", "task", "list", "--profile", profile,
+                      "--format", "json", "--page-size", "100"], check=False)
     try:
         data = json.loads(out)
         for t in data.get("data", []):
@@ -141,12 +143,13 @@ def setup(profile):
     run_dir = compile_dbt()
     generate_sql_files(workspace, run_dir)
 
-    # Step 2: create folder
-    print(f"\n[2/5] Creating folder '{FOLDER}'...")
+    # Step 2: create folders
+    print(f"\n[2/6] Creating folders '{FOLDER}' and '{FOLDER_INIT}'...")
     run_cmd(["cz-cli", "task", "create-folder", FOLDER, "--profile", profile], check=False)
+    run_cmd(["cz-cli", "task", "create-folder", FOLDER_INIT, "--profile", profile], check=False)
 
-    # Step 3: create tasks (idempotent)
-    print(f"\n[3/5] Creating {len(MODEL_DAG)} SQL tasks...")
+    # Step 3: create refresh tasks (idempotent)
+    print(f"\n[3/6] Creating {len(MODEL_DAG)} refresh tasks in '{FOLDER}'...")
     task_ids = {}
     for entry in MODEL_DAG:
         name = entry["task"]
@@ -161,19 +164,40 @@ def setup(profile):
             task_ids[name] = tid
             print(f"  created: {name} (id={tid})")
 
-    # Step 4: set REFRESH content from generated refresh/ files
-    print(f"\n[4/5] Setting task content from refresh/ files...")
+    # Step 4: create init (DDL) tasks (idempotent)
+    init_name = lambda t: f"init_{t}"
+    print(f"\n[4/6] Creating {len(MODEL_DAG)} init tasks in '{FOLDER_INIT}'...")
     for entry in MODEL_DAG:
+        name = init_name(entry["task"])
+        existing = get_task_id(name, profile)
+        if existing:
+            print(f"  already exists: {name} (id={existing})")
+        else:
+            run_cmd(["cz-cli", "task", "create", name,
+                     "--type", "SQL", "--folder", FOLDER_INIT, "--profile", profile])
+            print(f"  created: {name}")
+
+    # Step 5: set content + cron + deploy
+    print(f"\n[5/6] Setting task content and deploying...")
+    for entry in MODEL_DAG:
+        # refresh task
         refresh_file = TASKS_DIR / "refresh" / f"{entry['task']}.sql"
         run_cmd(["cz-cli", "task", "save-content", entry["task"],
                  "--file", str(refresh_file), "--profile", profile])
         run_cmd(["cz-cli", "task", "save-cron", entry["task"],
                  "--cron", "0 2 * * *", "--profile", profile])
-        print(f"  {entry['task']}: {refresh_file.read_text().strip()}")
+        # init task (DDL, no cron — run manually)
+        ddl_file = TASKS_DIR / "ddl" / f"{entry['task']}.sql"
+        run_cmd(["cz-cli", "task", "save-content", init_name(entry["task"]),
+                 "--file", str(ddl_file), "--profile", profile])
+        run_cmd(["cz-cli", "task", "save-cron", init_name(entry["task"]),
+                 "--cron", "0 3 * * *", "--profile", profile])
+        print(f"  {entry['task']}: refresh + init content set")
 
-    # Step 5: set dependencies + deploy
-    print(f"\n[5/5] Setting dependencies and deploying...")
+    # Step 6: set dependencies + deploy all
+    print(f"\n[6/6] Setting dependencies and deploying...")
     for entry in MODEL_DAG:
+        # refresh task deps
         if entry["deps"]:
             dep_list = [{"taskId": task_ids[d], "taskName": d}
                         for d in entry["deps"] if task_ids.get(d)]
@@ -181,17 +205,23 @@ def setup(profile):
                      "--deps", "replace", "--dep-tasks", json.dumps(dep_list),
                      "--profile", profile])
         run_cmd(["cz-cli", "task", "deploy", entry["task"], "--profile", profile])
+        # init task (no deps — run independently)
+        run_cmd(["cz-cli", "task", "deploy", init_name(entry["task"]), "--profile", profile])
         deps_str = f" ← {entry['deps']}" if entry["deps"] else ""
-        print(f"  deployed: {entry['task']}{deps_str}")
+        print(f"  deployed: {entry['task']}{deps_str} + {init_name(entry['task'])}")
 
     print(f"""
 === Setup complete ===
 
 Generated files (gitignored, workspace-specific):
-  tasks/ddl/     — CREATE DYNAMIC TABLE DDL (run once via dbt, for reference)
-  tasks/refresh/ — REFRESH DYNAMIC TABLE commands (used by Studio Tasks)
+  tasks/ddl/     — CREATE DYNAMIC TABLE DDL (from dbt target/run/, used by init tasks)
+  tasks/refresh/ — REFRESH DYNAMIC TABLE commands (used by refresh tasks)
 
-Task DAG (folder: {FOLDER}):
+Studio folders:
+  {FOLDER}/       — 7 refresh tasks (daily schedule, dependency chain)
+  {FOLDER_INIT}/  — 7 init tasks (CREATE DYNAMIC TABLE, run manually to rebuild)
+
+Task DAG ({FOLDER}):
   01_dim_customer  ─┐
   02_dim_datetime  ─┼─► 04_fct_invoices ─► 05_report_customer_invoices
   03_dim_product   ─┘                   ─► 06_report_product_invoices
@@ -205,6 +235,9 @@ To trigger a full pipeline refresh:
   cz-cli task execute 05_report_customer_invoices --profile {profile} --max-wait-seconds 60
   cz-cli task execute 06_report_product_invoices  --profile {profile} --max-wait-seconds 60
   cz-cli task execute 07_report_year_invoices     --profile {profile} --max-wait-seconds 60
+
+To rebuild a table (e.g. after schema change):
+  cz-cli task execute init_01_dim_customer --profile {profile} --max-wait-seconds 60
 """)
 
 
