@@ -174,15 +174,6 @@ def get_folder_id(name, profile, parent_id=0):
     return None
 
 
-
-    _, out = run_cmd(["cz-cli", "profile", "show", profile, "--format", "json"], check=False)
-    try:
-        d = json.loads(out)
-        return d.get("data", {}).get("workspace") or os.getenv("CLICKZETTA_WORKSPACE", "")
-    except Exception:
-        return os.getenv("CLICKZETTA_WORKSPACE", "")
-
-
 def get_task_id(name, profile):
     _, out = run_cmd(["cz-cli", "task", "list", "--profile", profile,
                       "--format", "json", "--page-size", "100"], check=False)
