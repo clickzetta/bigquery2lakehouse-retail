@@ -65,10 +65,11 @@ def run(cmd, check=True):
 def get_task_id(task_name, profile):
     out = run(["cz-cli", "task", "list", "--profile", profile, "--format", "json"], check=False)
     try:
-        tasks = json.loads(out)
+        data = json.loads(out)
+        tasks = data.get("data", data) if isinstance(data, dict) else data
         for t in tasks:
-            if t.get("taskName") == task_name:
-                return t.get("taskId")
+            if t.get("task_name") == task_name or t.get("taskName") == task_name:
+                return t.get("task_id") or t.get("taskId")
     except Exception:
         pass
     return None
@@ -77,16 +78,20 @@ def get_task_id(task_name, profile):
 def setup(profile):
     print(f"\n=== Creating Studio Tasks (profile: {profile}) ===\n")
 
+    # Fetch existing task IDs first (idempotent: skip create if already exists)
     task_ids = {}
-
     for task_name in TASKS:
-        print(f"[1/3] Creating task: {task_name}")
-        run(["cz-cli", "task", "create", task_name, "--profile", profile])
-
-        task_id = get_task_id(task_name, profile)
-        if task_id:
-            task_ids[task_name] = task_id
-            print(f"      task_id: {task_id}")
+        existing_id = get_task_id(task_name, profile)
+        if existing_id:
+            task_ids[task_name] = existing_id
+            print(f"[1/3] Task already exists: {task_name} (id={existing_id})")
+        else:
+            print(f"[1/3] Creating task: {task_name}")
+            run(["cz-cli", "task", "create", task_name, "--type", "SHELL", "--profile", profile])
+            task_id = get_task_id(task_name, profile)
+            if task_id:
+                task_ids[task_name] = task_id
+                print(f"      task_id: {task_id}")
 
     print()
     for task_name, content in TASK_CONTENTS.items():
