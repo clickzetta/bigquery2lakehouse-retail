@@ -45,8 +45,10 @@ except ImportError:
 
 TASKS_DIR = Path(__file__).parent
 DBT_DIR = TASKS_DIR.parent / "dbt"
+FOLDER_PARENT = "bigquery2lakehouse_retail"
 FOLDER = "retail_pipeline"
 FOLDER_INIT = "retail_pipeline_init"
+FOLDER_IDS_FILE = Path(__file__).parent / ".folder_ids.json"
 
 MODEL_DAG = [
     {"model": "dim_customer",             "task": "01_dim_customer",             "subdir": "transform", "deps": []},
@@ -108,7 +110,66 @@ def generate_sql_files(workspace, run_dir):
     print(f"  refresh/ — {len(MODEL_DAG)} REFRESH DYNAMIC TABLE files")
 
 
+def create_folder(name, profile, parent_id=0):
+    """Create folder and return its ID.
+    Note: --format json conflicts with --parent, so we omit --format.
+    On 'already exists' error, load ID from saved state file.
+    """
+    _, out = run_cmd(["cz-cli", "task", "create-folder", name,
+                      "--parent", str(parent_id), "--profile", profile], check=False)
+    try:
+        d = json.loads(out)
+        # new folder: {"data": <int>}
+        if isinstance(d.get("data"), int):
+            return d["data"]
+        # already exists at root: {"data": {"id": <int>, "existing": true}}
+        if isinstance(d.get("data"), dict) and "id" in d["data"]:
+            return d["data"]["id"]
+    except Exception:
+        pass
+    # sub-folder already exists but list-folders doesn't return sub-folders —
+    # load from saved state file if available
+    if FOLDER_IDS_FILE.exists():
+        saved = json.loads(FOLDER_IDS_FILE.read_text())
+        if name in saved:
+            return saved[name]
+    # root folder fallback: search list
+    return get_folder_id(name, profile, parent_id=parent_id)
+
+
+def save_folder_ids(ids: dict):
+    existing = {}
+    if FOLDER_IDS_FILE.exists():
+        existing = json.loads(FOLDER_IDS_FILE.read_text())
+    existing.update(ids)
+    FOLDER_IDS_FILE.write_text(json.dumps(existing, indent=2))
+
+
 def get_workspace(profile):
+    _, out = run_cmd(["cz-cli", "profile", "show", profile, "--format", "json"], check=False)
+    try:
+        d = json.loads(out)
+        return d.get("data", {}).get("workspace") or os.getenv("CLICKZETTA_WORKSPACE", "")
+    except Exception:
+        return os.getenv("CLICKZETTA_WORKSPACE", "")
+
+
+def get_folder_id(name, profile, parent_id=0):
+    """Get folder ID by name under a given parent (0 = root)."""
+    _, out = run_cmd(["cz-cli", "task", "list-folders", "--profile", profile,
+                      "--format", "json", "--page-size", "100"], check=False)
+    try:
+        data = json.loads(out)
+        folders = data.get("data", [])
+        for f in folders:
+            if f.get("dataFolderName") == name and f.get("parentFolderId", 0) == parent_id:
+                return f.get("id")
+    except Exception:
+        pass
+    return None
+
+
+
     _, out = run_cmd(["cz-cli", "profile", "show", profile, "--format", "json"], check=False)
     try:
         d = json.loads(out)
@@ -130,6 +191,15 @@ def get_task_id(name, profile):
     return None
 
 
+def get_workspace(profile):
+    _, out = run_cmd(["cz-cli", "profile", "show", profile, "--format", "json"], check=False)
+    try:
+        d = json.loads(out)
+        return d.get("data", {}).get("workspace") or os.getenv("CLICKZETTA_WORKSPACE", "")
+    except Exception:
+        return os.getenv("CLICKZETTA_WORKSPACE", "")
+
+
 def setup(profile):
     workspace = get_workspace(profile)
     if not workspace:
@@ -143,13 +213,25 @@ def setup(profile):
     run_dir = compile_dbt()
     generate_sql_files(workspace, run_dir)
 
-    # Step 2: create folders
-    print(f"\n[2/6] Creating folders '{FOLDER}' and '{FOLDER_INIT}'...")
-    run_cmd(["cz-cli", "task", "create-folder", FOLDER, "--profile", profile], check=False)
-    run_cmd(["cz-cli", "task", "create-folder", FOLDER_INIT, "--profile", profile], check=False)
+    # Step 2: create folder hierarchy
+    print(f"\n[2/6] Creating folder structure '{FOLDER_PARENT}/{FOLDER}' and '{FOLDER_PARENT}/{FOLDER_INIT}'...")
+    parent_id = create_folder(FOLDER_PARENT, profile, parent_id=0)
+    if not parent_id:
+        print(f"  ERROR: could not create/find folder '{FOLDER_PARENT}'")
+        sys.exit(1)
+    folder_id = create_folder(FOLDER, profile, parent_id=parent_id)
+    folder_init_id = create_folder(FOLDER_INIT, profile, parent_id=parent_id)
+    if not folder_id or not folder_init_id:
+        print(f"  ERROR: could not create sub-folders")
+        sys.exit(1)
+    # save IDs for teardown and idempotent re-runs
+    save_folder_ids({FOLDER_PARENT: parent_id, FOLDER: folder_id, FOLDER_INIT: folder_init_id})
+    print(f"  '{FOLDER_PARENT}' id={parent_id}")
+    print(f"  '{FOLDER_PARENT}/{FOLDER}' id={folder_id}")
+    print(f"  '{FOLDER_PARENT}/{FOLDER_INIT}' id={folder_init_id}")
 
     # Step 3: create refresh tasks (idempotent)
-    print(f"\n[3/6] Creating {len(MODEL_DAG)} refresh tasks in '{FOLDER}'...")
+    print(f"\n[3/6] Creating {len(MODEL_DAG)} refresh tasks in '{FOLDER_PARENT}/{FOLDER}'...")
     task_ids = {}
     for entry in MODEL_DAG:
         name = entry["task"]
@@ -159,14 +241,14 @@ def setup(profile):
             print(f"  already exists: {name} (id={existing})")
         else:
             run_cmd(["cz-cli", "task", "create", name,
-                     "--type", "SQL", "--folder", FOLDER, "--profile", profile])
+                     "--type", "SQL", "--folder", str(folder_id), "--profile", profile])
             tid = get_task_id(name, profile)
             task_ids[name] = tid
             print(f"  created: {name} (id={tid})")
 
     # Step 4: create init (DDL) tasks (idempotent)
     init_name = lambda t: f"init_{t}"
-    print(f"\n[4/6] Creating {len(MODEL_DAG)} init tasks in '{FOLDER_INIT}'...")
+    print(f"\n[4/6] Creating {len(MODEL_DAG)} init tasks in '{FOLDER_PARENT}/{FOLDER_INIT}'...")
     for entry in MODEL_DAG:
         name = init_name(entry["task"])
         existing = get_task_id(name, profile)
@@ -174,7 +256,7 @@ def setup(profile):
             print(f"  already exists: {name} (id={existing})")
         else:
             run_cmd(["cz-cli", "task", "create", name,
-                     "--type", "SQL", "--folder", FOLDER_INIT, "--profile", profile])
+                     "--type", "SQL", "--folder", str(folder_init_id), "--profile", profile])
             print(f"  created: {name}")
 
     # Step 5: set content + cron + deploy
@@ -214,8 +296,9 @@ Generated files (gitignored, workspace-specific):
   tasks/refresh/ — REFRESH DYNAMIC TABLE commands (used by refresh tasks)
 
 Studio folders:
-  {FOLDER}/       — 7 refresh tasks (daily schedule, dependency chain, deployed)
-  {FOLDER_INIT}/  — 7 init tasks (CREATE DYNAMIC TABLE, draft, run manually to rebuild)
+  {FOLDER_PARENT}/
+  ├── {FOLDER}/       — 7 refresh tasks (daily schedule, dependency chain, deployed)
+  └── {FOLDER_INIT}/  — 7 init tasks (CREATE DYNAMIC TABLE, draft, run manually to rebuild)
 
 Task DAG ({FOLDER}):
   01_dim_customer  ─┐

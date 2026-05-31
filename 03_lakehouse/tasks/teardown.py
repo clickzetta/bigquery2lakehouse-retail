@@ -36,6 +36,8 @@ REFRESH_TASKS = [
 ]
 INIT_TASKS = [f"init_{t}" for t in REFRESH_TASKS]
 FOLDERS = ["retail_pipeline", "retail_pipeline_init"]
+FOLDER_PARENT = "bigquery2lakehouse_retail"
+FOLDER_IDS_FILE = Path(__file__).parent / ".folder_ids.json"
 
 
 def run_cmd(cmd, check=False):
@@ -92,10 +94,37 @@ def teardown(profile, yes=False):
         rc, out = run_cmd(["cz-cli", "task", "delete", task, "--yes", "--profile", profile])
         print(f"  {'OK' if rc==0 else 'SKIP'} {task}")
 
-    # Delete folders (must be empty)
-    for folder in FOLDERS:
-        rc, out = run_cmd(["cz-cli", "task", "delete-folder", folder, "--yes", "--profile", profile])
-        print(f"  {'OK' if rc==0 else 'SKIP'} folder: {folder}")
+    # Delete folders using saved IDs (sub-folders not returned by list-folders API)
+    print("\nDeleting folders...")
+    saved_ids = {}
+    if FOLDER_IDS_FILE.exists():
+        saved_ids = json.loads(FOLDER_IDS_FILE.read_text())
+
+    # delete sub-folders by ID first
+    for name in FOLDERS:
+        fid = saved_ids.get(name)
+        if fid:
+            rc, out = run_cmd(["cz-cli", "task", "delete-folder", str(fid),
+                               "--yes", "--profile", profile])
+            print(f"  {'OK' if rc==0 else 'SKIP'} sub-folder: {name} (id={fid})")
+        else:
+            print(f"  SKIP sub-folder: {name} (no saved ID)")
+
+    # delete parent folder by ID or name
+    parent_id = saved_ids.get(FOLDER_PARENT)
+    if parent_id:
+        rc, out = run_cmd(["cz-cli", "task", "delete-folder", str(parent_id),
+                           "--yes", "--profile", profile])
+        print(f"  {'OK' if rc==0 else 'SKIP'} parent folder: {FOLDER_PARENT} (id={parent_id})")
+    else:
+        rc, out = run_cmd(["cz-cli", "task", "delete-folder", FOLDER_PARENT,
+                           "--yes", "--profile", profile])
+        print(f"  {'OK' if rc==0 else 'SKIP'} parent folder: {FOLDER_PARENT}")
+
+    # clean up saved IDs file
+    if FOLDER_IDS_FILE.exists():
+        FOLDER_IDS_FILE.unlink()
+        print("  cleaned up .folder_ids.json")
 
     print("\n=== Teardown complete ===")
     print("Note: retail and retail_raw schemas are preserved (drop manually if needed).")
