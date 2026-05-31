@@ -73,37 +73,37 @@ def compile_dbt():
     if r.returncode != 0:
         print("  ERROR: dbt compile failed. Run setup.py first to create profiles.yml.")
         sys.exit(1)
-    compiled_dir = DBT_DIR / "target" / "compiled" / "retail" / "models"
-    if not compiled_dir.exists():
-        print(f"  ERROR: compiled directory not found: {compiled_dir}")
+    run_dir = DBT_DIR / "target" / "run" / "retail" / "models"
+    if not run_dir.exists():
+        print(f"  ERROR: run directory not found: {run_dir}")
+        print("  Run: dbt run --profiles-dir . first")
         sys.exit(1)
-    return compiled_dir
+    return run_dir
 
 
-def generate_sql_files(workspace, compiled_dir):
+def generate_sql_files(workspace, run_dir):
     ddl_dir = TASKS_DIR / "ddl"
     refresh_dir = TASKS_DIR / "refresh"
     ddl_dir.mkdir(exist_ok=True)
     refresh_dir.mkdir(exist_ok=True)
 
-    # detect local workspace embedded in compiled SQL
-    sample = (compiled_dir / "transform" / "dim_customer.sql").read_text()
-    m = re.search(r'\b(\w+)\.retail', sample)
+    # detect local workspace embedded in run SQL
+    sample = (run_dir / "transform" / "dim_customer.sql").read_text()
+    m = re.search(r'create dynamic table\s+(\w+)\.retail', sample, re.IGNORECASE)
     local_ws = m.group(1) if m else workspace
 
     for entry in MODEL_DAG:
-        sql_file = compiled_dir / entry["subdir"] / f"{entry['model']}.sql"
-        select_sql = sql_file.read_text().strip().replace(local_ws + ".", workspace + ".")
+        sql_file = run_dir / entry["subdir"] / f"{entry['model']}.sql"
+        # dbt run SQL is the exact DDL executed — replace local workspace with target
+        ddl_sql = sql_file.read_text().strip().replace(local_ws + ".", workspace + ".")
         table_ref = f"{workspace}.retail.{entry['model']}"
 
-        (ddl_dir / f"{entry['task']}.sql").write_text(
-            f"CREATE DYNAMIC TABLE {table_ref}\nAS\n{select_sql};"
-        )
+        (ddl_dir / f"{entry['task']}.sql").write_text(ddl_sql)
         (refresh_dir / f"{entry['task']}.sql").write_text(
             f"REFRESH DYNAMIC TABLE {table_ref};"
         )
 
-    print(f"  ddl/     — {len(MODEL_DAG)} CREATE DYNAMIC TABLE files")
+    print(f"  ddl/     — {len(MODEL_DAG)} CREATE DYNAMIC TABLE files (from dbt target/run/)")
     print(f"  refresh/ — {len(MODEL_DAG)} REFRESH DYNAMIC TABLE files")
 
 
@@ -136,10 +136,10 @@ def setup(profile):
 
     print(f"\n=== Setup Studio Tasks (profile: {profile}, workspace: {workspace}) ===\n")
 
-    # Step 1: compile dbt + generate SQL files
-    print("[1/5] Compiling dbt and generating SQL files...")
-    compiled_dir = compile_dbt()
-    generate_sql_files(workspace, compiled_dir)
+    # Step 1: read dbt run output + generate SQL files
+    print("[1/5] Reading dbt target/run/ and generating SQL files...")
+    run_dir = compile_dbt()
+    generate_sql_files(workspace, run_dir)
 
     # Step 2: create folder
     print(f"\n[2/5] Creating folder '{FOLDER}'...")
