@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: retail
+    schema: retail_raw
+    tables:
+      - name: raw_invoices
+      - name: raw_country

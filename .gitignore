@@ -1,0 +1,7 @@
+.env
+03_lakehouse/dbt/profiles.yml
+03_lakehouse/dbt/target/
+03_lakehouse/dbt/dbt_packages/
+__pycache__/
+*.pyc
+.DS_Store
